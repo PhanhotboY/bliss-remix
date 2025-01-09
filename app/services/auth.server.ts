@@ -11,10 +11,10 @@ const authenticator = new Authenticator<ISessionUser>(sessionStorage);
 
 authenticator.use(
   new FormStrategy(async ({ form }) => {
-    let email = form.get('email') as string;
+    let username = form.get('username') as string;
     let password = form.get('password') as string;
 
-    let user = await login(email, password);
+    let user = await login(username, password);
 
     return user;
   }),
@@ -23,10 +23,10 @@ authenticator.use(
   'user-pass'
 );
 
-const login = async (email: string, password: string) => {
+const login = async (username: string, password: string) => {
   const res = await fetcher('/auth/signin', {
     method: 'POST',
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ username, password }),
   });
   return res;
 };
