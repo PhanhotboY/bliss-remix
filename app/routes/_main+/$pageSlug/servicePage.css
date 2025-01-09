@@ -1,0 +1,35 @@
+#service-slider {
+  .text-renderer {
+    color: var(--sub5-text);
+  }
+
+  .slick-list {
+    overflow: hidden;
+  }
+
+  .slick-track {
+    display: flex;
+  }
+
+  .slick-slide {
+    opacity: 0.4;
+  }
+
+  .slick-slide.slick-active {
+    opacity: 1;
+  }
+
+  @media (min-width: 768px) {
+    .slick-list {
+      overflow: visible;
+    }
+  }
+
+  .description {
+    margin-top: -1rem;
+
+    p {
+      text-align: center !important;
+    }
+  }
+}

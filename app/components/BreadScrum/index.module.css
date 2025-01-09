@@ -1,0 +1,25 @@
+.breadscrum {
+  overflow: hidden;
+  margin-block: 4px;
+
+  li {
+    &:not(:last-child):after {
+      content: '/';
+      margin: 0 8px;
+    }
+
+    &:last-child {
+      font-weight: 600;
+    }
+
+    a {
+      display: inline;
+      width: max-content;
+
+      &:hover {
+        color: var(--main-color);
+        text-decoration: underline;
+      }
+    }
+  }
+}

@@ -1,0 +1,75 @@
+export const SCHOOL = {
+  MODEL: {
+    MAM_NON: { name: 'Mầm non', slug: 'mam-non' },
+    TIEU_HOC: { name: 'Tiểu học', slug: 'tieu-hoc' },
+    TTTA: {
+      name: 'Trung tâm tiếng Anh',
+      slug: 'trung-tam-tieng-anh',
+    },
+    TTDN: { name: 'Trung tâm dạy nhạc', slug: 'trung-tam-day-nhac' },
+    TTDT: { name: 'Trung tâm dạy toán', slug: 'trung-tam-day-toan' },
+    TTTN: {
+      name: 'Trung tâm tiếng Nhật',
+      slug: 'trung-tam-tieng-nhat',
+    },
+    TTDB: { name: 'Trung tâm dạy bơi', slug: 'trung-tam-day-boi' },
+    TTTT: {
+      name: 'Trung tâm tiếng Trung',
+      slug: 'trung-tam-tieng-trung',
+    },
+    DH: { name: 'Đại học', slug: 'dai-hoc' },
+    CD: { name: 'Cao Đẳng', slug: 'cao-dang' },
+    TCN: { name: 'Trung cấp nghề', slug: 'trung-cap-nghe' },
+    TT: { name: 'Trông trẻ', slug: 'trong-tre' },
+    TTTH: {
+      name: 'Trung tâm tiếng Hàn',
+      slug: 'trung-tam-tieng-han',
+    },
+    THCS: { name: 'Trung học cơ sở', slug: 'trung-hoc-co-so' },
+    THPT: {
+      name: 'Trung học phổ thông',
+      slug: 'trung-hoc-pho-thong',
+    },
+    TTLTDH: {
+      name: 'Trung tâm luyện thi đại học',
+      slug: 'trung-tam-luyen-thi-dai-hoc',
+    },
+    TTLTC3: {
+      name: 'Trung tâm luyện thi cấp 3',
+      slug: 'trung-tam-luyen-thi-cap-3',
+    },
+    TTTP: {
+      name: 'Trung tâm tiếng Pháp',
+      slug: 'trung-tam-tieng-phap',
+    },
+  },
+  TYPE: {
+    TU_THUC: { name: 'Tư thục', slug: 'tu-thuc' },
+    CONG_LAP: { name: 'Công lập', slug: 'cong-lap' },
+    SONG_NGU: { name: 'Song ngữ', slug: 'song-ngu' },
+    QUOC_TE: { name: 'Quốc tế', slug: 'quoc-te' },
+  },
+  PROGRAM: {
+    CBGD: { name: 'Chuẩn bộ giáo dục', slug: 'chuan-bo-giao-duc' },
+    GAKKEN: { name: 'Gakken Steam Program', slug: 'gakken-steam-program' },
+    STEAM: { name: 'Steam', slug: 'steam' },
+    MONTESSORI: { name: 'Montessori', slug: 'montessori' },
+    SHICHIDA: { name: 'Shichida', slug: 'shichida' },
+    GLENN_DOMAN: { name: 'Glenn Doman', slug: 'glenn-doman' },
+    HIGHSCOPE: { name: 'HighScope', slug: 'highscope' },
+    REGGIO_EMILIA: { name: 'Reggio Emilia', slug: 'reggio-emilia' },
+    IEYC: { name: 'IEYC', slug: 'ieyc' },
+    EYFS: { name: 'EYFS', slug: 'eyfs' },
+    NEL: { name: 'NEL', slug: 'nel' },
+  },
+  TUITION: {
+    ALL: { name: 'Tất cả', slug: '0-' },
+    U1M: { name: 'Dưới 1 triệu', slug: '0-1' },
+    F1T3: { name: '1 - 3 triệu', slug: '1-3' },
+    F3T5: { name: '3 - 5 triệu', slug: '3-5' },
+    F5T7: { name: '5 - 7 triệu', slug: '5-7' },
+    F7T9: { name: '7 - 9 triệu', slug: '7-9' },
+    F9T11: { name: '9 - 11 triệu', slug: '9-11' },
+    A11: { name: 'Trên 11 triệu', slug: '11-' },
+  },
+} as const;

@@ -1,0 +1,21 @@
+.contact {
+  > div {
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+  }
+
+  span {
+    margin-right: 2px;
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid;
+    padding: 2px;
+    margin-right: 6px;
+    color: inherit;
+  }
+}

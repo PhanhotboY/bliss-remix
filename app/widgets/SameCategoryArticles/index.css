@@ -1,0 +1,5 @@
+#article_slider {
+  .slick-active > .dot {
+    background-color: #fff !important;
+  }
+}

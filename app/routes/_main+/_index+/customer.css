@@ -1,0 +1,19 @@
+#customer-slider {
+  .slick-list {
+    overflow: hidden;
+  }
+
+  .slick-slide {
+    opacity: 0.4;
+  }
+
+  .slick-slide.slick-active {
+    opacity: 1;
+  }
+
+  @media (min-width: 768px) {
+    .slick-list {
+      overflow: visible;
+    }
+  }
+}

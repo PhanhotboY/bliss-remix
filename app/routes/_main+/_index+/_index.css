@@ -1,0 +1,5 @@
+main {
+  section {
+    grid-column: span 12 / span 12;
+  }
+}
