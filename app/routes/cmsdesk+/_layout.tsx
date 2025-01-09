@@ -247,10 +247,7 @@ const UserBrief = ({ user }: { user: IUser }) => {
   const fullName = `${user.usr_firstName} ${user.usr_lastName}`;
 
   return (
-    <Link
-      to='/cmsdesk/account'
-      className='flex items-center space-x-4 p-2 mb-5'
-    >
+    <Link to='/cmsdesk/account' className='flex items-center gap-x-4 p-2 mb-5'>
       <div className='h-12 rounded-full overflow-hidden aspect-square'>
         <img
           className='object-cover object-center h-full w-full'
@@ -259,8 +256,8 @@ const UserBrief = ({ user }: { user: IUser }) => {
         />
       </div>
 
-      <div>
-        <h4 className='font-semibold text-lg text-gray-700 capitalize font-poppins tracking-wide'>
+      <div className='overflow-hidden'>
+        <h4 className='font-semibold text-lg text-gray-700 capitalize font-poppins tracking-wide truncate'>
           {fullName}
         </h4>
         <span className='text-sm tracking-wide flex items-center space-x-1 text-green'>

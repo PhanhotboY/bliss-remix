@@ -96,7 +96,7 @@ export default function SliderInput({
                 formData.append('img', e.target.files?.[0]);
                 formData.append('folder', type);
 
-                const res = await fetch('/cmsdesk/images/upload', {
+                const res = await fetch('/api/images/upload', {
                   method: 'POST',
                   body: formData,
                 });
