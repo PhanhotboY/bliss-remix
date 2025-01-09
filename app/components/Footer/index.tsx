@@ -28,7 +28,7 @@ export default function Footer() {
         <section className='col-span-12 md:col-span-4 flex flex-col gap-4'>
           <Heading3>VỀ CHÚNG TÔI</Heading3>
 
-          <div className='w-full aspect-video col-span-4 md:items-center px-8'>
+          <div className='w-full h-24 col-span-4 md:items-center px-8'>
             <Link to='/'>
               <img
                 className='object-contain object-center z-0'
