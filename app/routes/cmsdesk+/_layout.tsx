@@ -74,7 +74,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
           youtube: formData.get('youtube'),
           zalo: formData.get('zalo'),
         },
-        logo: formData.get('logo'),
+        logo: formData.get('logo').size > 0 ? formData.get('logo') : null,
         google: {
           analytics: formData.get('analytics'),
           map: formData.get('map'),
