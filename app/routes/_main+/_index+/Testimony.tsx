@@ -8,7 +8,7 @@ export default function Testimony() {
 
   return (
     <section className='container'>
-      <Heading2>BÁO CHÍ NÓI GÌ VỀ BLISS BEAUTY CLINIC</Heading2>
+      <Heading2>BÁO CHÍ NÓI GÌ VỀ NAILS NHÀ Ý</Heading2>
 
       <div className='col-span-12 flex items-center justify-evenly gap-8 flex-wrap'>
         {sliders

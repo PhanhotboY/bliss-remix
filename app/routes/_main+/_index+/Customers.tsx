@@ -47,20 +47,15 @@ export default function Customers() {
                         <div className='text-center'>
                           {/* content */}
                           <p className=''>
-                            Suốt nhiều năm qua, mình luôn phải đối mặt với mụn
-                            trứng cá, khiến cho sự tự tin và tinh thần bị ảnh
-                            hưởng rất lớn. Dù từng thử qua nhiều sản phẩm nhưng
-                            không cải thiện là bao, Và mình tìm đến Bliss
-                            Beauty, sau khi được bác sĩ tư vấn chi tiết và kiểm
-                            tra da kỹ càng, mình đã đặt trọn niềm tin vào nơi
-                            đây.
-                          </p>
-
-                          <p>
-                            Qua mỗi buổi điều trị mình cảm thấy mụn trứng cá
-                            giảm dần, da trở nên sáng, mịn màng hơn. Từ đó, mình
-                            cảm thấy tự tin và hạnh phúc hơn trong giao tiếp,
-                            học tập thường ngày.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit. Praesent eu velit leo. Maecenas aliquam,
+                            tortor varius ultricies sollicitudin, enim nulla
+                            consequat diam, ac blandit ipsum magna id eros. Duis
+                            in mollis elit, sed porta nunc. Curabitur vel
+                            blandit ligula. Nam accumsan pharetra ex a euismod.
+                            Fusce sit amet pulvinar eros. Ut consequat bibendum
+                            nisl eu molestie. Sed at libero sit amet urna
+                            dignissim vulputate.
                           </p>
                         </div>
                       </div>

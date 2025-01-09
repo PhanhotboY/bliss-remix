@@ -41,7 +41,7 @@ export default function FeaturedServices() {
 }
 
 const content = [
-  'Bliss Beauty Clinic tự hào là người bạn đồng hành tin cậy của +20.000 khách hàng trong hành trình tìm lại vẻ đẹp tự nhiên và rạng ngời. Chúng tôi đã và đang dần khẳng định vị thế của mình trong lĩnh vực chăm sóc da chuyên nghiệp tại TP.HCM.',
-  'Các dịch vụ nổi bật, bao gồm: Chăm sóc da mụn Hydrogen AI tiên tiến, Oxy tươi tái tạo làn da, Peel da kiểm soát mụn, trẻ hoá da – nâng cơ không xâm lấn,…Với giá thành hợp lý, ưu đãi hấp dẫn, phù hợp với mọi đối tượng. Mang đến cho khách hàng những giải pháp làm đẹp hiệu quả và tiết kiệm.',
-  'Là hệ thống chăm sóc da uy tín, chuyên nghiệp, Bliss Beauty sở hữu đội ngũ y bác sĩ, chuyên gia giỏi chuyên môn, giàu kinh nghiệm. Luôn tận tâm phục vụ và mang đến những trải nghiệm làm đẹp hài lòng nhất cho khách hàng.',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eu velit leo. Maecenas aliquam, tortor varius ultricies sollicitudin, enim nulla consequat diam, ac blandit ipsum magna id eros. Duis in mollis elit, sed porta nunc. Curabitur vel blandit ligula. Nam accumsan pharetra ex a euismod.',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec cursus varius est, nec consectetur purus tristique id.',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec cursus varius est, nec consectetur purus tristique id.',
 ];

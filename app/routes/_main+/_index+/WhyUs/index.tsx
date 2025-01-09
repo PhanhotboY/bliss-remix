@@ -3,7 +3,7 @@ import Heading2 from '~/widgets/Heading2';
 export default function WhyUs() {
   return (
     <section className='container'>
-      <Heading2>6 LÝ DO NÊN CHỌN BLISS BEAUTY CLINIC</Heading2>
+      <Heading2>6 LÝ DO NÊN CHỌN NAILS NHÀ Ý</Heading2>
 
       <div className='col-span-12 lg:col-span-6 grid grid-cols-6 gap-8 rounded-lg bg-[--sub1-color] p-6 font-semibold text-[--sub7-text] text-sm'>
         {reasons.map((reason, index) => (
@@ -22,7 +22,7 @@ export default function WhyUs() {
       <div className='col-span-12 lg:col-span-6 h-96 rounded-lg overflow-hidden'>
         <img
           className='h-full'
-          src='/assets/tu-van-voi-bac-si.png'
+          src='/assets/why-us.png'
           alt='tu van voi bac si'
         />
       </div>
