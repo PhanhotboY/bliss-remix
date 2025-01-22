@@ -89,7 +89,7 @@ export default function Footer() {
             {() => (
               <div
                 className='fb-page'
-                data-href='https://www.facebook.com/@iconictalents.vn'
+                data-href={app.app_social.facebook}
                 data-tabs='timeline'
                 data-width='500px'
                 data-height='500px'
@@ -99,12 +99,10 @@ export default function Footer() {
                 data-show-facepile='true'
               >
                 <blockquote
-                  cite='https://www.facebook.com/@iconictalents.vn'
+                  cite={app.app_social.facebook}
                   className='fb-xfbml-parse-ignore'
                 >
-                  <a href='https://www.facebook.com/@iconictalents.vn'>
-                    Iconic Talents - Sinh Trắc Vân Tay Hiện Đại
-                  </a>
+                  <a href={app.app_social.facebook}>{app.app_title}</a>
                 </blockquote>
               </div>
             )}

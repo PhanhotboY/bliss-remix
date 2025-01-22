@@ -30,7 +30,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
         title: title || 'No title found',
         description: description || 'No description found',
         image: {
-          url: logoUrl || '/assets/cat-loading.gif',
+          url: logoUrl || '/assets/loading.gif',
         },
       },
     });

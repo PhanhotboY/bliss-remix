@@ -6,6 +6,7 @@ import {
   useLoaderData,
   useLocation,
   useNavigate,
+  useNavigation,
 } from '@remix-run/react';
 
 import 'react-toastify/ReactToastify.css';
@@ -30,6 +31,7 @@ import {
   RiShoppingCartLine,
 } from '@remixicon/react';
 import { countUnseenBookings } from '~/services/booking.server';
+import LoadingOverlay from '~/components/LoadingOverlay';
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   try {
@@ -128,6 +130,7 @@ export default function CmsDesk() {
   const { user, unseenBookings } = useLoaderData<typeof loader>();
   const location = useLocation();
   const isLoginPage = location.pathname === '/cmsdesk/login';
+  const navigation = useNavigation();
 
   return (
     <main className='app_content text-[--sub7-text] select-auto'>
@@ -142,6 +145,8 @@ export default function CmsDesk() {
           </div>
         </div>
       )}
+
+      {navigation.state === 'loading' && <LoadingOverlay />}
     </main>
   );
 }

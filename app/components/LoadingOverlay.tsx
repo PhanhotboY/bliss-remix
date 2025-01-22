@@ -6,7 +6,7 @@ export default function LoadingOverlay() {
           <div className='w-32 h-32'>
             <img
               className='w-full h-full object-contain'
-              src='/assets/cat-loading.gif'
+              src='/assets/loading.gif'
               alt='Loading...'
             />
           </div>
