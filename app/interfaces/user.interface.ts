@@ -10,7 +10,7 @@ export interface IUser {
   usr_sex: string;
   usr_slug: string;
   usr_status: string;
-  usr_userName: string;
+  usr_username: string;
   createdAt: string;
   updatedAt: string;
 }

@@ -10,12 +10,13 @@ import { toast } from 'react-toastify';
 
 // hooks
 import { useEffect, useRef, useState } from 'react';
+import { IUser } from '~/interfaces/user.interface';
 
 export const loader = async ({}: LoaderFunctionArgs) => {
   return json({});
 };
 
-const UserProfileDetails = ({ user }: { user: any }) => {
+const UserProfileDetails = ({ user }: { user: IUser }) => {
   const fetcher = useFetcher();
 
   const [isChanged, setIsChanged] = useState(false);
@@ -25,7 +26,7 @@ const UserProfileDetails = ({ user }: { user: any }) => {
   const [msisdn, setMsisdn] = useState(user.usr_msisdn);
   const [address, setAddress] = useState(user.usr_address);
   const [gender, setGender] = useState(user.usr_sex);
-  const [userName, setUserName] = useState(user.usr_userName);
+  const [userName, setUserName] = useState(user.usr_username);
   const [password, setPassword] = useState('');
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const UserProfileDetails = ({ user }: { user: any }) => {
         email !== user.usr_email ||
         msisdn !== user.usr_msisdn ||
         address !== user.usr_address ||
-        userName !== user.usr_userName ||
+        userName !== user.usr_username ||
         password !== ''
     );
   }, [email, firstName, lastName, msisdn, address, gender, userName, password]);
@@ -186,7 +187,7 @@ const UserProfileDetails = ({ user }: { user: any }) => {
               <input
                 id='username'
                 className={'field-input'}
-                name='userName'
+                name='username'
                 type='text'
                 placeholder='Username'
                 autoComplete='username'
