@@ -253,12 +253,14 @@ const UserBrief = ({ user }: { user: IUser }) => {
 
   return (
     <Link to='/cmsdesk/account' className='flex items-center gap-x-4 p-2 mb-5'>
-      <div className='h-12 rounded-full overflow-hidden aspect-square'>
-        <img
-          className='object-cover object-center h-full w-full'
-          src='/favicon.ico'
-          alt={fullName}
-        />
+      <div>
+        <div className='h-12 rounded-full overflow-hidden aspect-square'>
+          <img
+            className='object-cover object-center h-full w-full'
+            src='/favicon.ico'
+            alt={fullName}
+          />
+        </div>
       </div>
 
       <div className='overflow-hidden'>
