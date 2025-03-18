@@ -2,7 +2,6 @@ export interface IAppSettings {
   app_title: string;
   app_description: string;
   app_logo: string;
-  app_favicon: string;
   app_social: {
     facebook: string;
     youtube: string;
@@ -20,7 +19,6 @@ export interface IAppSettingsAttrs {
   title: string;
   description: string;
   logo: string;
-  favicon: string;
   social: {
     facebook?: string;
     youtube?: string;

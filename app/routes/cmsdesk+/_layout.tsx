@@ -38,7 +38,6 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         title: formData.get('title') as string,
         description: formData.get('description') as string,
         logo: formData.get('logo') as string,
-        favicon: formData.get('favicon') as string,
         social: {
           facebook: formData.get('facebook') as string,
           youtube: formData.get('youtube') as string,

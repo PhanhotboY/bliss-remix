@@ -1,9 +1,5 @@
 import { NavLink } from '@remix-run/react';
-import {
-  RiArrowDownSLine,
-  RiArrowUpSLine,
-  RiCloseLine,
-} from '@remixicon/react';
+import { RiArrowDownSLine, RiCloseLine } from '@remixicon/react';
 import { useState } from 'react';
 import { useRootLoaderData } from '~/lib/useRootLoaderData';
 import {

@@ -22,7 +22,6 @@ export default function CmsDesk() {
   const [logo, setLogo] = useState(appSettings.app_logo);
   const [title, setTitle] = useState(appSettings.app_title);
   const [description, setDescription] = useState(appSettings.app_description);
-  const [favicon, setFavicon] = useState(appSettings.app_favicon);
   const [facebook, setFacebook] = useState(appSettings.app_social.facebook);
   const [tiktok, setTiktok] = useState(appSettings.app_social.tiktok);
   const [youtube, setYoutube] = useState(appSettings.app_social.youtube);
@@ -43,16 +42,13 @@ export default function CmsDesk() {
         zalo !== appSettings.app_social.zalo ||
         taxCode !== appSettings.app_taxCode ||
         logo !== appSettings.app_logo ||
-        favicon !== appSettings.app_favicon ||
         headScripts !== appSettings.app_headScripts ||
-        bodyScripts !== appSettings.app_bodyScripts ||
-        favicon?.includes('blob')
+        bodyScripts !== appSettings.app_bodyScripts
     );
   }, [
     logo,
     title,
     description,
-    favicon,
     facebook,
     tiktok,
     youtube,
@@ -106,78 +102,25 @@ export default function CmsDesk() {
         action='/cmsdesk'
         encType='multipart/form-data'
       >
-        <div className='col-span-4 flex flex-col gap-4'>
+        <div className='col-span-4 row-span-2'>
           <ImageInput
             name='logo'
             label='Logo'
             value={logo}
             onChange={setLogo}
           />
+        </div>
 
-          <ImageInput
-            name='favicon'
-            label='Favicon'
-            value={favicon}
-            onChange={setFavicon}
+        <div className='col-span-4'>
+          <TextInput
+            name='title'
+            value={title}
+            label='Tiêu đề trang'
+            onChange={setTitle}
           />
         </div>
 
-        <div className='meta col-span-4 flex flex-col gap-4'>
-          <div className='meta flex flex-col gap-4'>
-            <TextInput
-              name='title'
-              value={title}
-              label='Tiêu đề trang'
-              onChange={setTitle}
-            />
-
-            <TextInput
-              name='description'
-              value={description}
-              label='Mô tả'
-              onChange={setDescription}
-            />
-
-            <TextAreaInput
-              name='headScripts'
-              value={headScripts || ''}
-              label='Head Scripts'
-              onChange={setHeadScripts}
-            />
-
-            <TextAreaInput
-              name='bodyScripts'
-              value={bodyScripts || ''}
-              label='Body Scripts'
-              onChange={setBodyScripts}
-            />
-          </div>
-        </div>
-
-        <div className='logo col-span-4 flex flex-col gap-4'>
-          <TextInput
-            name='facebook'
-            value={facebook}
-            label='Facebook'
-            onChange={setFacebook}
-          />
-
-          <TextInput
-            name='tiktok'
-            value={tiktok}
-            label='Tiktok'
-            onChange={setTiktok}
-          />
-
-          <TextInput
-            name='youtube'
-            value={youtube}
-            label='Youtube'
-            onChange={setYoutube}
-          />
-
-          <TextInput name='zalo' value={zalo} label='Zalo' onChange={setZalo} />
-
+        <div className='col-span-4'>
           <TextInput
             name='taxCode'
             value={taxCode}
@@ -186,8 +129,70 @@ export default function CmsDesk() {
           />
         </div>
 
+        <div className='col-span-4 row-span-1'>
+          <TextAreaInput
+            name='description'
+            value={description}
+            label='Mô tả'
+            onChange={setDescription}
+          />
+        </div>
+
+        <div className='col-span-4'>
+          <TextAreaInput
+            name='headScripts'
+            value={headScripts || ''}
+            label='Head Scripts'
+            onChange={setHeadScripts}
+          />
+        </div>
+
+        <div className='col-span-4'>
+          <TextInput
+            name='facebook'
+            value={facebook}
+            label='Facebook'
+            onChange={setFacebook}
+          />
+        </div>
+
+        <div className='col-span-4'>
+          <TextInput
+            name='tiktok'
+            value={tiktok}
+            label='Tiktok'
+            onChange={setTiktok}
+          />
+        </div>
+
+        <div className='col-span-4 row-span-2'>
+          <TextAreaInput
+            name='bodyScripts'
+            value={bodyScripts || ''}
+            label='Body Scripts'
+            onChange={setBodyScripts}
+          />
+        </div>
+
+        <div className='col-span-4'>
+          <TextInput
+            name='youtube'
+            value={youtube}
+            label='Youtube'
+            onChange={setYoutube}
+          />
+        </div>
+
+        <div className='col-span-4'>
+          <TextInput name='zalo' value={zalo} label='Zalo' onChange={setZalo} />
+        </div>
+
         <button
-          className='middle col-span-8 col-start-5 none center w-full rounded-lg bg-blue-500 py-3 px-6 font-sans text-sm font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none'
+          className='middle col-span-8 col-start-5 none center w-full rounded-lg bg-blue-500 py-3 px-6 
+          font-sans text-sm font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all 
+          hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none 
+          active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 
+          disabled:shadow-none'
           data-ripple-light='true'
           type='submit'
           disabled={!isChanged}

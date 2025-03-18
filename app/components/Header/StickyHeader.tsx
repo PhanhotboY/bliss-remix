@@ -1,11 +1,5 @@
 import { Link } from '@remix-run/react';
-import {
-  RiListCheck,
-  RiMenuLine,
-  RiSearchLine,
-  RiShoppingCart2Line,
-  RiShoppingCartLine,
-} from '@remixicon/react';
+import { RiListCheck, RiSearchLine } from '@remixicon/react';
 import { useState } from 'react';
 import { useRootLoaderData } from '~/lib/useRootLoaderData';
 import NavBar from './NavBar';
