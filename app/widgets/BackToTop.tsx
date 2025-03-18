@@ -1,4 +1,3 @@
-import { Box, Fab } from '@mui/material';
 import { RiArrowUpSLine } from '@remixicon/react';
 import { useEffect } from 'react';
 
@@ -21,16 +20,15 @@ export default function BackToTop({ className }: { className?: string }) {
   };
 
   return (
-    <Box
+    <button
       id='scroll-to-top'
       onClick={scrollToTop}
       className={`hidden ${className}`}
-      role='presentation'
-      sx={{ position: 'fixed', bottom: 40, right: 40 }}
+      style={{ position: 'fixed', bottom: 40, right: 40 }}
     >
-      <Fab size='medium' aria-label='scroll back to top'>
+      <div>
         <RiArrowUpSLine />
-      </Fab>
-    </Box>
+      </div>
+    </button>
   );
 }

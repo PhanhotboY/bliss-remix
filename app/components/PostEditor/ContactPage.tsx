@@ -5,7 +5,7 @@ import { loader, action } from '~/routes/cmsdesk+/pages+/$id.edit';
 import Select from '~/widgets/Select';
 import Hydrated from '../Hydrated';
 import TextEditor from '../TextEditor/index.client';
-import { IPost, IPostDetail } from '~/interfaces/post.interface';
+import { IPage, IPageDetail } from '~/interfaces/page.interface';
 import TextInput from '../TextInput';
 import ImageInput from '../ImageInput';
 import Wrapper from './Wrapper';
@@ -16,7 +16,7 @@ export default function ContactPageEditor({
   template,
   setTemplate,
 }: {
-  post?: IPostDetail;
+  post?: IPageDetail;
   type: 'update' | 'create';
   template: string;
   setTemplate: (template: string) => void;

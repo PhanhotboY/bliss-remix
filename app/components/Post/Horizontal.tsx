@@ -1,6 +1,6 @@
 import { Link } from '@remix-run/react';
 import clsx from 'classnames';
-import { IPost } from '~/interfaces/post.interface';
+import { IPage } from '~/interfaces/page.interface';
 import { getPublicPeriod } from '~/lib';
 import { RiEyeFill } from '@remixicon/react';
 import TextRenderer from '../TextRenderer';
@@ -13,7 +13,7 @@ export default function HorizontalPost({
   colSpan = 10,
   className,
 }: {
-  post: IPost;
+  post: IPage;
   detailed?: boolean;
   important?: boolean;
   ratio?: string;

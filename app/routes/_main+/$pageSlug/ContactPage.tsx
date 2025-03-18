@@ -33,7 +33,7 @@ export default function ContactPage() {
         <div className='col-span-12 sm:col-span-9'>
           <iframe
             className='w-full'
-            src={getMapLink(appSettings.app_google.map)}
+            src={getMapLink(appSettings.app_description)}
             height='500'
             style={{ border: 0 }}
             allowFullScreen={true}

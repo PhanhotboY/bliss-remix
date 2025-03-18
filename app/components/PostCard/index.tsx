@@ -1,12 +1,12 @@
 import { Link } from '@remix-run/react';
 import { format } from 'date-fns';
-import { IPost } from '~/interfaces/post.interface';
+import { IPage } from '~/interfaces/page.interface';
 
 export default function PostCard({
   post,
   cols,
 }: {
-  post: IPost & { pst_isPublished: boolean };
+  post: IPage & { pst_isPublished: boolean };
   cols?: { sm?: number; md?: number; lg?: number; xl?: number };
 }) {
   const colClasses = `col-span-3 sm:col-span-${cols?.sm || 6} md:col-span-${

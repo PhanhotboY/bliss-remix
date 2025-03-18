@@ -1,6 +1,6 @@
 import { Link } from '@remix-run/react';
 import { RiArrowRightSLine, RiMovie2Line } from '@remixicon/react';
-import { IPost } from '~/interfaces/post.interface';
+import { IPage } from '~/interfaces/page.interface';
 import { useEffect, useState } from 'react';
 
 export default function HighlightPostBox({
@@ -9,11 +9,11 @@ export default function HighlightPostBox({
   postsGetter,
 }: {
   // category: { title: string; slug: string };
-  posts?: Array<IPost>;
-  postsGetter: () => Promise<Array<IPost>>;
+  posts?: Array<IPage>;
+  postsGetter: () => Promise<Array<IPage>>;
 }) {
   const [loading, setLoading] = useState(true);
-  const [posts, setPosts] = useState<Array<IPost>>([]);
+  const [posts, setPosts] = useState<Array<IPage>>([]);
 
   useEffect(() => {
     postsGetter().then((posts) => {

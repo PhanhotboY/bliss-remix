@@ -1,7 +1,7 @@
-import { json, LoaderFunctionArgs } from '@remix-run/node';
+import { LoaderFunctionArgs } from '@remix-run/node';
 import { useLoaderData, useNavigate } from '@remix-run/react';
 
-import { getPages } from '~/services/post.server';
+import { getPages } from '~/services/page.server';
 import PostCard from '~/components/PostCard';
 import { RiAddLine } from '@remixicon/react';
 import { useState } from 'react';
@@ -16,10 +16,10 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
   const pages = await getPages({ user });
 
-  return json({ pages });
+  return { pages };
 };
 
-export default function PostManager() {
+export default function PageManager() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const { pages } = useLoaderData<typeof loader>();
@@ -52,8 +52,8 @@ export default function PostManager() {
     <div className='container grid grid-cols-12 gap-4'>
       {loading && <LoadingOverlay />}
 
-      {pages.map((post: any, i: number) => (
-        <PostCard post={post} key={i} />
+      {pages.map((page: any, i: number) => (
+        <PostCard post={page} key={i} />
       ))}
 
       <button

@@ -1,6 +1,6 @@
-import { Skeleton } from '@mui/material';
 import { Await } from '@remix-run/react';
 import { Suspense, ReactNode } from 'react';
+import Skeleton from '~/widgets/Skeleton';
 
 export default function Defer<T>({
   children,

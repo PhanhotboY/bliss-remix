@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import HorizontalPost from '../Post/Horizontal';
 import SeemoreButton from '../SeemoreButton';
-import { CircularProgress } from '@mui/material';
-import { IPost } from '~/interfaces/post.interface';
+import { IPage } from '~/interfaces/page.interface';
 import VerticalPost from '../Post/Vertical';
 
 export default function PostList({
@@ -10,8 +9,8 @@ export default function PostList({
   postsGetter,
   emphasized = false,
 }: {
-  posts: Array<IPost>;
-  postsGetter: (page: number) => Promise<Array<IPost>> | Array<IPost>;
+  posts: Array<IPage>;
+  postsGetter: (page: number) => Promise<Array<IPage>> | Array<IPage>;
   emphasized?: boolean;
 }) {
   const [page, setPage] = useState(1);
@@ -75,7 +74,13 @@ export default function PostList({
 
       {loading && (
         <div className='w-fit m-auto mt-6'>
-          <CircularProgress color='inherit' />
+          <div className='flex items-center justify-center min-h-screen'>
+            <div
+              style={{ borderTopColor: 'transparent' }}
+              className='w-8 h-8 border-4 border-blue-200 rounded-full animate-spin'
+            ></div>
+            <p className='ml-2'>cargando...</p>
+          </div>
         </div>
       )}
 

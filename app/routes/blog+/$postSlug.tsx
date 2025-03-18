@@ -3,7 +3,7 @@ import { defer, LoaderFunctionArgs, MetaFunction } from '@remix-run/node';
 import { Await, Link, useFetcher, useLoaderData } from '@remix-run/react';
 
 import HandsomeError from '~/components/HandsomeError';
-import { getPosts, getPostDetail } from '~/services/post.server';
+import { getPosts, getPostDetail } from '~/services/page.server';
 import PostDetail from '~/components/PostDetail';
 import Hydrated from '~/components/Hydrated';
 import SameCategoryArticles from '~/widgets/SameCategoryArticles';

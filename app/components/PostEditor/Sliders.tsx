@@ -1,7 +1,7 @@
 import { useLoaderData } from '@remix-run/react';
 
 import { loader } from '~/routes/cmsdesk+/pages+/new';
-import { IPost } from '~/interfaces/post.interface';
+import { IPage } from '~/interfaces/page.interface';
 import Wrapper from './Wrapper';
 import { useEffect, useState } from 'react';
 import TextEditor from '../TextEditor/index.client';
@@ -15,7 +15,7 @@ export default function LandingPageEditor({
   template,
   setTemplate,
 }: {
-  post?: IPost;
+  post?: IPage;
   type: 'update' | 'create';
   template: string;
   setTemplate: (template: string) => void;

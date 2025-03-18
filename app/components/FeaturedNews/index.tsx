@@ -4,12 +4,12 @@ import { RefObject, useRef } from 'react';
 import Slider from 'react-slick';
 import { getPublicPeriod } from '~/lib';
 import Hydrated from '../Hydrated';
-import { IPost } from '~/interfaces/post.interface';
+import { IPage } from '~/interfaces/page.interface';
 
 // @ts-ignore
 const SliderComponent = !!Slider.default ? Slider.default : Slider;
 
-export default function FeaturedNews({ posts }: { posts: IPost[] }) {
+export default function FeaturedNews({ posts }: { posts: IPage[] }) {
   let sliderRef = useRef<Slider>(null);
   const next = () => {
     // @ts-ignore

@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 
 import './index.css';
 import Hydrated from '~/components/Hydrated';
-import { IPost } from '~/interfaces/post.interface';
+import { IPage } from '~/interfaces/page.interface';
 import { LinksFunction } from '@remix-run/node';
 
 // @ts-ignore
@@ -13,7 +13,7 @@ const SliderComponent = !!Slider.default ? Slider.default : Slider;
 export default function SameCategoryArticles({
   articles,
 }: {
-  articles: IPost[];
+  articles: IPage[];
 }) {
   let sliderRef = useRef<Slider>(null);
 

@@ -1,13 +1,8 @@
-import { ActionFunctionArgs, LoaderFunctionArgs, json } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
-import { useState } from 'react';
+import { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node';
 
-import BlogEditor from '~/components/PostEditor/Blog';
-import { uploadImage } from '~/lib/uploadHandler.server';
 import { authenticator } from '~/services/auth.server';
-import { createPost } from '~/services/post.server';
-import { getPostCategories } from '~/services/postCategory.server';
-import { getPostTemplates } from '~/services/postTemplate.server';
+import { createPage } from '~/services/page.server';
+import PageEditor from './components/PageEditor';
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const user = await authenticator.isAuthenticated(request);
@@ -18,75 +13,54 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         let formData = await r.formData();
 
         const folder = formData.get('folder') as string;
-        const file = formData.get('thumbnail') as File;
-        let thumbnail;
+        const thumbnail = formData.get('thumbnail') as File;
 
-        if (file.size > 0) {
-          formData = await uploadImage(request, folder);
-          thumbnail = formData.get('thumbnail') as string;
-        }
         const title = formData.get('title') as string;
         const content = formData.get('content') as string;
         const category = formData.get('category') as string;
         const template = formData.get('template') as string;
         const isPublished = formData.get('isPublished') === 'true';
 
-        if (!title || !content || !category || !template) {
-          return json({
+        if (!title || !template) {
+          return {
             toast: {
               message: 'Vui lòng điền đầy đủ thông tin!',
               type: 'error',
             },
-            post: null,
-          });
+            page: null,
+          };
         }
 
-        // Save the post to the database
-        const post = await createPost(
+        // Save the page to the database
+        const page = await createPage(
           { title, content, thumbnail, category, template, isPublished },
-          user!
+          user!,
         );
 
-        return json({
+        return {
           toast: {
             message: isPublished
               ? 'Bài viết được tạo thành công!'
               : 'Bản nháp được lưu thành công!',
             type: 'success',
           },
-          post,
-        });
+          page,
+        };
       } catch (error: any) {
-        return json({
+        return {
           toast: { message: error.statusText || error.message, type: 'error' },
-          post: null,
-        });
+          page: null,
+        };
       }
 
     default:
-      return json({
+      return {
         toast: { message: 'Method not allowed', type: 'error' },
-        post: null,
-      });
+        page: null,
+      };
   }
 };
 
-export const loader = async ({ request, params }: LoaderFunctionArgs) => {
-  const postTemplates = await getPostTemplates();
-  const postCategories = await getPostCategories();
-
-  return json({ postTemplates, postCategories });
-};
-
-export default function CreatePost() {
-  const { postTemplates } = useLoaderData<typeof loader>();
-
-  const [template, setTemplate] = useState(
-    postTemplates.find((tem) => tem.ptp_code === 'blog')?.id ||
-      postTemplates[0].id
-  );
-
-  return (
-    <BlogEditor type='create' template={template} setTemplate={setTemplate} />
-  );
+export default function CreatePage() {
+  return <PageEditor />;
 }

@@ -1,8 +1,8 @@
 // components
 import { useEffect, useRef, useState } from 'react';
-import { toast } from 'react-toastify';
-import { useFetcher } from '@remix-run/react';
+import { useFetcher, useNavigation } from '@remix-run/react';
 import { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node';
+import { toast } from 'react-toastify';
 
 // assets
 import PasswordInput from '@components/PasswordInput';
@@ -16,14 +16,23 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 };
 
 export async function action({ request }: ActionFunctionArgs) {
-  await authenticator.authenticate('user-pass', request, {
-    successRedirect: '/cmsdesk',
-  });
+  try {
+    return await authenticator.authenticate('user-pass', request, {
+      successRedirect: '/cmsdesk',
+      throwOnError: true,
+    });
+  } catch (err: any) {
+    if (err instanceof Error) {
+      return {
+        toast: {
+          message: err.message,
+          type: 'error',
+        },
+      };
+    }
 
-  return new Response(null, {
-    status: 303,
-    headers: { Location: '/cmsdesk' },
-  });
+    throw err;
+  }
 }
 
 const Login = () => {
@@ -33,6 +42,18 @@ const Login = () => {
 
   const fetcher = useFetcher<typeof action>();
   const toastIdRef = useRef<any>(null);
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    switch (navigation.state) {
+      case 'loading':
+        toast.dismiss();
+        break;
+
+      default:
+        break;
+    }
+  }, [navigation.state]);
 
   useEffect(() => {
     switch (fetcher.state) {
@@ -66,17 +87,13 @@ const Login = () => {
 
         break;
     }
-
-    return () => {
-      toast.dismiss(toastIdRef.current);
-    };
   }, [fetcher.state]);
 
   return (
     <div className='h-screen flex items-center'>
       <div className='h-fit w-fit bg-widget flex items-center justify-center py-10 px-4 lg:p-[40px] mx-auto rounded shadow'>
         <div className='max-w-[460px] w-full'>
-          <div className='flex flex-col gap-2.5 text-center'>
+          <div className='flex flex-col gap-2.5 text-center text-3xl font-medium'>
             <h1>Welcome back!</h1>
           </div>
 
@@ -86,6 +103,7 @@ const Login = () => {
                 <label htmlFor='username' className='field-label'>
                   Username
                 </label>
+
                 <input
                   className={'field-input'}
                   id='username'
@@ -108,7 +126,7 @@ const Login = () => {
               />
             </div>
             <div className='flex flex-col items-center gap-6 mt-4 mt-10'>
-              <button className='text-btn'>Forgot Password?</button>
+              {/* <button className='text-btn'>Forgot Password?</button> */}
 
               <button
                 className='btn btn--primary w-full'

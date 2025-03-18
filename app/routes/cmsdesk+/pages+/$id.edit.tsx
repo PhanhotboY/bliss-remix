@@ -1,23 +1,16 @@
-import { ActionFunctionArgs, LoaderFunctionArgs, json } from '@remix-run/node';
+import { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import { useState } from 'react';
 
-import BlogEditor from '~/components/PostEditor/Blog';
-import ContactPageEditor from '~/components/PostEditor/ContactPage';
-import LandingPageEditor from '~/components/PostEditor/LandingPage';
-import { PAGE } from '~/constants/page.constant';
-import { uploadImage } from '~/lib/uploadHandler.server';
 import { authenticator } from '~/services/auth.server';
-import { deletePost, getPostDetail, updatePost } from '~/services/post.server';
-import { getPostCategories } from '~/services/postCategory.server';
-import { getPostTemplates } from '~/services/postTemplate.server';
+import { deletePage, getPostDetail, updatePage } from '~/services/page.server';
+import PageEditor from './components/PageEditor';
 
 export const action = async ({ request, params }: ActionFunctionArgs) => {
   const id = params.id;
   if (!id) {
     throw new Response(null, {
       status: 404,
-      statusText: 'Post not found',
+      statusText: 'Page not found',
     });
   }
 
@@ -28,125 +21,76 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
   switch (request.method) {
     case 'PUT':
       try {
-        const r = request.clone();
-        let formData = await r.formData();
+        let formData = await request.formData();
 
         const folder = formData.get('folder') as string;
-        const file = formData.get('thumbnail') as File;
-        let thumbnail;
+        const thumbnail = formData.get('thumbnail') as File;
 
-        if (file?.size > 0) {
-          formData = await uploadImage(request, folder);
-          thumbnail = formData.get('thumbnail') as string;
-        }
         const title = formData.get('title') as string;
         const content = formData.get('content') as string;
         const category = formData.get('category') as string;
         const template = formData.get('template') as string;
-        const isPublished = formData.get('isPublished') === 'true';
+        const isPublished = formData.get('isPublished');
 
-        // Save the post to the database
-        const post = await updatePost(
+        // Save the page to the database
+        const page = await updatePage(
           id,
           { title, content, thumbnail, category, template, isPublished },
-          user
+          user,
         );
 
         // return redirect('/cmsdesk/pages');
-        return json({
-          post,
+        return {
+          page,
           toast: { message: 'Cập nhật bài viết thành công!', type: 'success' },
-        });
+        };
       } catch (error: any) {
         console.error(error);
-        return json({
+        return {
           toast: { message: error.message, type: 'error' },
-        });
+        };
       }
 
     case 'DELETE':
       try {
-        // Delete the post from the database
-        const res = await deletePost(id, user!);
-        return json({
+        // Delete the page from the database
+        const res = await deletePage(id, user!);
+        return {
           res,
           toast: { message: 'Xóa bài viết thành công!', type: 'success' },
-        });
+        };
       } catch (error: any) {
         console.error(error);
-        return json({
+        return {
           toast: { message: error.message, type: 'error' },
-        });
+        };
       }
 
     default:
-      return json({
+      return {
         error: 'Method not allowed',
         toast: { message: 'Có lỗi xảy ra!', type: 'error' },
-      });
+      };
   }
 };
 
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   const id = params.id;
   if (!id) {
-    throw new Error('Post not found');
+    throw new Error('Page not found');
   }
 
   const user = await authenticator.isAuthenticated(request, {
     failureRedirect: '/cmsdesk/login',
   });
-  // Fetch the post from the database
-  const post = await getPostDetail(id, user);
-  const postTemplates = await getPostTemplates();
-  const postCategories = await getPostCategories();
+  // Fetch the page from the database
+  const page = await getPostDetail(id, user);
 
-  return json({ post, postTemplates, postCategories });
+  return { page };
 };
 
-export default function EditPost() {
-  const { post, postTemplates } = useLoaderData<typeof loader>();
+export default function EditPage() {
+  const { page } = useLoaderData<typeof loader>();
 
-  const [template, setTemplate] = useState(
-    post.pst_template._id ||
-      postTemplates.find((tem) => tem.ptp_code === PAGE.TEMPLATE.BLOG.code)
-        ?.id ||
-      postTemplates[0].id
-  );
-
-  switch (template) {
-    case postTemplates.find(
-      (tem) => tem.ptp_code === PAGE.TEMPLATE.LANDING_PAGE.code
-    )?.id:
-      return (
-        <LandingPageEditor
-          post={post}
-          type='update'
-          template={template}
-          setTemplate={setTemplate}
-        />
-      );
-
-    case postTemplates.find(
-      (tem) => tem.ptp_code === PAGE.TEMPLATE.CONTACT_PAGE.code
-    )?.id:
-      return (
-        <ContactPageEditor
-          post={post}
-          type='update'
-          template={template}
-          setTemplate={setTemplate}
-        />
-      );
-
-    default:
-      return (
-        <BlogEditor
-          post={post}
-          type='update'
-          template={template}
-          setTemplate={setTemplate}
-        />
-      );
-  }
+  return <PageEditor page={page} />;
 }

@@ -6,12 +6,12 @@ import {
 } from '@remix-run/node';
 
 import PostBox from '~/components/PostBox';
-import { IPost } from '~/interfaces/post.interface';
+import { IPage } from '~/interfaces/page.interface';
 import SeemoreButton from '~/components/SeemoreButton';
 import SmallPostBox from '~/components/SmallPostBox';
 import VerticalArtical from '~/components/Post/Vertical';
 import HorizontalPost from '~/components/Post/Horizontal';
-import { getPosts } from '~/services/post.server';
+import { getPosts } from '~/services/page.server';
 import { Link, useLoaderData } from '@remix-run/react';
 import Defer from '~/components/Defer';
 import PostList from '~/components/PostList';
@@ -57,7 +57,7 @@ export default function Index() {
   );
 }
 
-const Overview = ({ posts }: { posts: IPost[] }) => {
+const Overview = ({ posts }: { posts: IPage[] }) => {
   return (
     !!posts.length && (
       <div className='col-span-full grid grid-cols-12 gap-y-4 md:gap-6 mt-5'>

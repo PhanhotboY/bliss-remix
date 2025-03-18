@@ -6,7 +6,7 @@ import './_index.css';
 import FeaturedServices from '~/routes/_main+/_index+/FeatureServices';
 import AboutUs from '~/routes/_main+/_index+/AboutUs';
 import News from './News';
-import { getPosts } from '~/services/post.server';
+import { getPosts } from '~/services/page.server';
 import WhyUs from '~/routes/_main+/_index+/WhyUs';
 import Results from '~/routes/_main+/_index+/Results';
 import Customers from './Customers';

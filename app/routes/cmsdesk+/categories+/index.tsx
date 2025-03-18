@@ -16,7 +16,7 @@ import {
   getCategories,
   updateCategory,
 } from '~/services/category.server';
-import { getPages, getPosts } from '~/services/post.server';
+import { getPages, getPosts } from '~/services/page.server';
 import {
   getLayer1Categories,
   getLayer2Categories,
@@ -119,7 +119,7 @@ export default function ManageCategories() {
         break;
     }
   }, [fetcher.state]);
-
+  console.log(categories);
   return (
     <div className='grid grid-cols-12 gap-16'>
       {loading && <LoadingOverlay />}
@@ -174,7 +174,9 @@ export default function ManageCategories() {
           required
           defaultValue=''
         >
-          <option value=''>Không có</option>
+          <option value='' disabled>
+            Không có
+          </option>
           {pages.map((post, i) => (
             <option key={i} value={post.id}>
               {post.pst_title}

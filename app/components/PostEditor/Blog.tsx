@@ -12,7 +12,7 @@ import Select from '~/widgets/Select';
 import Hydrated from '../Hydrated';
 import TextEditor from '../TextEditor/index.client';
 import TextRenderer from '../TextRenderer';
-import { IPost, IPostDetail } from '~/interfaces/post.interface';
+import { IPage, IPageDetail } from '~/interfaces/page.interface';
 import TextInput from '../TextInput';
 import ImageInput from '../ImageInput';
 import Wrapper from './Wrapper';
@@ -24,7 +24,7 @@ export default function BlogEditor({
   template,
   setTemplate,
 }: {
-  post?: IPostDetail;
+  post?: IPageDetail;
   type: 'update' | 'create';
   template: string;
   setTemplate: (template: string) => void;

@@ -1,8 +1,8 @@
 const API_URL = process.env.API_URL || 'http://localhost:3000';
 
 const headers = {
-  'Content-Type': 'application/json',
   'x-api-key': process.env.API_APIKEY || '',
+  credentials: 'include',
 };
 
 const fetcher = async (
@@ -20,11 +20,14 @@ const fetcher = async (
     };
   }
 ) => {
-  const response = await fetch(`${API_URL}${path}`, {
+  const response = await fetch(`${API_URL}/api/v1${path}`, {
     method: 'GET',
     ...options,
     headers: {
       ...headers,
+      ...(options?.body instanceof FormData
+        ? {}
+        : { 'Content-Type': 'application/json' }),
       ...options?.headers,
       'x-client-id': options?.request?.user?.id || '',
       Authorization: options?.request?.tokens?.accessToken || '',
@@ -34,15 +37,23 @@ const fetcher = async (
 
   const data = await response.json();
 
-  console.log(
-    '%s %s \x1b[36m%s\x1b[0m',
-    options?.method || 'GET',
-    path,
-    response.status
-  );
+  if (response.ok) {
+    console.log(
+      '%s %s \x1b[32m%s\x1b[0m',
+      options?.method || 'GET',
+      path,
+      response.status
+    );
+  } else {
+    console.log(
+      '%s %s \x1b[31m%s\x1b[0m',
+      options?.method || 'GET',
+      path,
+      response.status
+    );
+  }
 
   if (data.errors) {
-    console.log(data.errors);
     throw new Response(null, {
       status: data.errors.status,
       statusText: data.errors.message,

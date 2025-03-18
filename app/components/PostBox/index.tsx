@@ -1,4 +1,4 @@
-import { IPost } from '~/interfaces/post.interface';
+import { IPage } from '~/interfaces/page.interface';
 import VerticalArtical from '../Post/Vertical';
 // import BoxHeader from '../BoxHeading';
 import { useEffect, useState } from 'react';
@@ -8,9 +8,9 @@ export default function PostBox({
 }: // category,
 {
   // category: ICategoryDetail | ICategory;
-  postsGetter: () => Promise<Array<IPost>>;
+  postsGetter: () => Promise<Array<IPage>>;
 }) {
-  const [posts, setPosts] = useState<Array<IPost>>([]);
+  const [posts, setPosts] = useState<Array<IPage>>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

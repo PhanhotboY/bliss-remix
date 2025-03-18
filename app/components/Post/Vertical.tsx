@@ -1,6 +1,6 @@
 import { Link } from '@remix-run/react';
 import { getPublicPeriod } from '~/lib';
-import { IPost } from '~/interfaces/post.interface';
+import { IPage } from '~/interfaces/page.interface';
 import { RiEyeFill } from '@remixicon/react';
 import Hydrated from '../Hydrated';
 import TextRenderer from '../TextRenderer';
@@ -11,7 +11,7 @@ export default function VerticalArtical({
   important = false,
   className = '',
 }: {
-  post: IPost;
+  post: IPage;
   detailed?: boolean;
   important?: boolean;
   className?: string;

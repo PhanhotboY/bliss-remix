@@ -3,7 +3,7 @@ import ServiceEditor from '~/components/ServiceEditor';
 
 import { uploadImage } from '~/lib/uploadHandler.server';
 import { authenticator } from '~/services/auth.server';
-import { getPosts } from '~/services/post.server';
+import { getPosts } from '~/services/page.server';
 import { createService } from '~/services/service.server';
 
 export const action = async ({ request }: ActionFunctionArgs) => {

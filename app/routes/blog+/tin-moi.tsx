@@ -3,7 +3,7 @@ import { Await, useLoaderData } from '@remix-run/react';
 import { Suspense } from 'react';
 import PostList from '~/components/PostList';
 import { clientFetch } from '~/lib';
-import { getPosts } from '~/services/post.server';
+import { getPosts } from '~/services/page.server';
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const posts = getPosts();

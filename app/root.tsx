@@ -1,5 +1,4 @@
 import {
-  json,
   Links,
   Meta,
   Outlet,
@@ -14,11 +13,10 @@ import style from './styles/index.scss?url';
 import HandsomeError from './components/HandsomeError';
 import { Bounce, ToastContainer } from 'react-toastify';
 import { getAppSettings } from './services/app.server';
-import { v2 as cloudinary } from 'cloudinary';
-import { getPublicId } from './utils';
 import Hydrated from './components/Hydrated';
 import BackToTop from './widgets/BackToTop';
 import { getCategories } from './services/category.server';
+import { getImageUrl } from './utils';
 
 export const links: LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -53,15 +51,10 @@ export const loader = async () => {
   const appSettings = await getAppSettings();
   const categories = await getCategories();
 
-  return json({
-    appSettings: {
-      ...appSettings,
-      app_logo: cloudinary.url(getPublicId(appSettings.app_logo), {
-        transformation: { height: 140 },
-      }),
-    },
+  return {
+    appSettings,
     categories,
-  });
+  };
 };
 
 export default function App() {

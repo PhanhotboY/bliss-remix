@@ -6,97 +6,62 @@ import {
   useLoaderData,
   useLocation,
   useNavigate,
+  useNavigation,
 } from '@remix-run/react';
 
 import 'react-toastify/ReactToastify.css';
 import HandsomeError from '~/components/HandsomeError';
 import { updateAppSettings } from '~/services/app.server';
 import { authenticator } from '~/services/auth.server';
-import { existsSync, rmSync, writeFileSync } from 'fs';
-import { dirname, resolve } from 'path';
-import { fileURLToPath } from 'url';
-import { uploadImage } from '~/lib/uploadHandler.server';
 import { getCurrentUser } from '~/services/user.server';
 import { IUser } from '~/interfaces/user.interface';
 import {
   RiBookShelfLine,
-  RiBtcLine,
   RiCalendar2Line,
-  RiCustomerServiceLine,
   RiDashboard3Line,
   RiFolderImageLine,
+  RiGitBranchLine,
   RiLogoutBoxRLine,
   RiNewspaperLine,
-  RiShoppingCartLine,
 } from '@remixicon/react';
 import { countUnseenBookings } from '~/services/booking.server';
+import LoadingOverlay from '~/components/LoadingOverlay';
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   try {
     const user = await authenticator.isAuthenticated(request);
-    const r = request.clone();
-    let formData = (await r.formData()) as any;
-    const favicon = formData.get('favicon') as File;
 
-    if (favicon.size > 0) {
-      const __filename = fileURLToPath(import.meta.url);
-      const __dirname = dirname(__filename);
-
-      const path = resolve(__dirname + '../../../public/favicon.ico');
-
-      if (existsSync(path)) {
-        rmSync(path);
-      }
-
-      const buffer = await favicon.arrayBuffer();
-      writeFileSync(path, Buffer.from(buffer));
-    }
-
-    if (formData.get('logo').size > 0) {
-      formData = (await uploadImage(request, 'logo')) as any;
-    }
+    let formData = await request.formData();
 
     const res = await updateAppSettings(
       {
-        title: formData.get('title'),
-        description: formData.get('description'),
-        email: formData.get('email'),
-        msisdn: formData.get('phone'),
-        address: {
-          province: formData.get('province'),
-          district: formData.get('district'),
-          // ward: formData.get('ward'),
-          street: formData.get('street'),
-        },
+        title: formData.get('title') as string,
+        description: formData.get('description') as string,
+        logo: formData.get('logo') as string,
+        favicon: formData.get('favicon') as string,
         social: {
-          facebook: formData.get('facebook'),
-          tiktok: formData.get('tiktok'),
-          youtube: formData.get('youtube'),
-          zalo: formData.get('zalo'),
+          facebook: formData.get('facebook') as string,
+          youtube: formData.get('youtube') as string,
+          tiktok: formData.get('tiktok') as string,
+          zalo: formData.get('zalo') as string,
         },
-        logo: formData.get('logo'),
-        google: {
-          analytics: formData.get('analytics'),
-          map: formData.get('map'),
-        },
-        taxCode: formData.get('taxCode'),
+        taxCode: formData.get('taxCode') as string,
+        headScripts: formData.get('headScripts') as string,
+        bodyScripts: formData.get('bodyScripts') as string,
       },
       user
     );
 
-    return json({
+    return {
       ...res,
       toast: { message: 'Cập nhật thông tin thành công!', type: 'success' },
-    });
+    };
   } catch (error: any) {
     console.error('Error updating app settings:', error);
-    return json(
-      {
-        error: 'Failed to update app settings',
-        toast: { message: error.message, type: 'error' },
-      },
-      { status: 500 }
-    );
+    return {
+      error: 'Failed to update app settings',
+      toast: { message: error.message || error.statusText, type: 'error' },
+    };
   }
 };
 
@@ -128,6 +93,7 @@ export default function CmsDesk() {
   const { user, unseenBookings } = useLoaderData<typeof loader>();
   const location = useLocation();
   const isLoginPage = location.pathname === '/cmsdesk/login';
+  const navigation = useNavigation();
 
   return (
     <main className='app_content text-[--sub7-text] select-auto'>
@@ -142,6 +108,8 @@ export default function CmsDesk() {
           </div>
         </div>
       )}
+
+      {navigation.state === 'loading' && <LoadingOverlay />}
     </main>
   );
 }
@@ -159,19 +127,26 @@ const SideBar = ({
   const navLinks = [
     { to: '/cmsdesk', label: 'Dashboard', icon: <RiDashboard3Line /> },
     { to: '/cmsdesk/images', label: 'Hình ảnh', icon: <RiFolderImageLine /> },
+    {
+      to: '/cmsdesk/sliders',
+      label: 'Hình ảnh trang chủ',
+      icon: (
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          viewBox='0 0 24 24'
+          fill='currentColor'
+        >
+          <path d='M7 3C6.44772 3 6 3.44772 6 4V7H3C2.44772 7 2 7.44772 2 8V20C2 20.5523 2.44772 21 3 21H17C17.5523 21 18 20.5523 18 20V17H21C21.5523 17 22 16.5523 22 16V4C22 3.44772 21.5523 3 21 3H7ZM17 7H8V5H20V15H18V8C18 7.44772 17.5523 7 17 7ZM16 9V15.7394L11.4911 11.6404L4 18.6321V9H16ZM11.5089 14.3596L16 18.4424V19H6.53702L11.5089 14.3596ZM7 13.5C7.82843 13.5 8.5 12.8284 8.5 12C8.5 11.1716 7.82843 10.5 7 10.5C6.17157 10.5 5.5 11.1716 5.5 12C5.5 12.8284 6.17157 13.5 7 13.5Z'></path>
+        </svg>
+      ),
+    },
     { to: '/cmsdesk/categories', label: 'Danh mục', icon: <RiBookShelfLine /> },
     {
-      to: '/cmsdesk/services',
-      label: 'Dịch vụ',
-      icon: <RiCustomerServiceLine />,
+      to: '/cmsdesk/branches',
+      label: 'Chi nhánh',
+      icon: <RiGitBranchLine />,
     },
     { to: '/cmsdesk/pages', label: 'Trang', icon: <RiNewspaperLine /> },
-    // {
-    //   to: '/cmsdesk/products',
-    //   label: 'Sản phẩm',
-    //   icon: <RiShoppingCartLine />,
-    // },
-    // { to: '/cmsdesk/orders', label: 'Đơn hàng', icon: <RiBtcLine /> },
     {
       to: '/cmsdesk/bookings',
       label: 'Đặt lịch',
@@ -210,7 +185,7 @@ const SideBar = ({
               } flex items-center space-x-3 text-gray-700 p-2 rounded-md hover:text-blue-500 
         font-medium hover:bg-zinc-100 focus:shadow-outline hover:underline relative`}
             >
-              <span className='text-gray-600'>{nav.icon}</span>
+              <span className='text-gray-600 w-6'>{nav.icon}</span>
               <span>{nav.label}</span>
 
               {nav?.badge && nav.badge}
@@ -251,12 +226,14 @@ const UserBrief = ({ user }: { user: IUser }) => {
       to='/cmsdesk/account'
       className='flex items-center space-x-4 p-2 mb-5'
     >
-      <div className='h-12 rounded-full overflow-hidden aspect-square'>
-        <img
-          className='object-cover object-center h-full w-full'
-          src='/favicon.ico'
-          alt={fullName}
-        />
+      <div>
+        <div className='h-12 rounded-full overflow-hidden aspect-square'>
+          <img
+            className='object-cover object-center h-full w-full'
+            src='/favicon.ico'
+            alt={fullName}
+          />
+        </div>
       </div>
 
       <div>

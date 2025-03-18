@@ -1,4 +1,4 @@
-import { IPost } from './post.interface';
+import { IPage } from './page.interface';
 
 export interface IService {
   id: string;

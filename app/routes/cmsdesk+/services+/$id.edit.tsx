@@ -3,7 +3,7 @@ import { useLoaderData } from '@remix-run/react';
 
 import ServiceEditor from '~/components/ServiceEditor';
 import { authenticator } from '~/services/auth.server';
-import { getPosts } from '~/services/post.server';
+import { getPosts } from '~/services/page.server';
 import {
   deleteService,
   getService,

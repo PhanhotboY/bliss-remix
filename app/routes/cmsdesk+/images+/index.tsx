@@ -1,119 +1,112 @@
-import { json, useLoaderData } from '@remix-run/react';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import { RiAddLine, RiLayoutGridLine, RiListCheck } from '@remixicon/react';
+import { Link, useLoaderData, useLocation } from '@remix-run/react';
 
-import SliderInput from '~/widgets/SliderInput';
-import { ActionFunctionArgs } from '@remix-run/node';
+import { IImage } from '~/interfaces/image.interface';
+import { getImages } from '~/services/image.server';
+import { getImageUrl } from '~/utils';
+import LoadingOverlay from '~/components/LoadingOverlay';
+import { uploadImages } from '~/services/image.client';
 import HandsomeError from '~/components/HandsomeError';
-import { getSliders, updateSlider } from '~/services/slider.server';
-import { authenticator } from '~/services/auth.server';
+import ImageGridLayout from './components/ImageGridLayout';
+import ImageListLayout from './components/ImageListLayout';
+
+export const loader = async () => {
+  const images = await getImages();
+  return { images };
+};
 
 export const meta = [
   {
-    title: 'Manage Sliders',
+    title: 'Danh sách ảnh',
   },
 ];
 
-export const action = async ({ request }: ActionFunctionArgs) => {
-  try {
-    switch (request.method) {
-      case 'POST':
-        const user = await authenticator.isAuthenticated(request);
-        if (!user) {
-          return json({
-            toast: { message: 'Vui lòng đăng nhập!', type: 'error' },
-          });
-        }
+export default function ImagesPage() {
+  const { images: fetchedImages } = useLoaderData<typeof loader>();
 
-        const formData = await request.formData();
+  const [images, setImages] = useState<IImage[]>(fetchedImages);
+  const [loading, setLoading] = useState(false);
+  const [layout, setLayout] = useState<'grid' | 'list'>('grid');
 
-        await updateSlider(
-          formData.get('type') as string,
-          { images: JSON.parse(formData.get('images') as string) },
-          user
-        );
-
-        return json({
-          toast: { message: 'Upload images successfully!', type: 'success' },
-        });
-
-      default:
-        return json({
-          toast: { message: 'Method Not Allowed', type: 'error' },
-        });
+  useEffect(() => {
+    const searchParams = new URL(location.href).searchParams;
+    if (searchParams.get('layout')) {
+      setLayout(searchParams.get('layout') as 'grid' | 'list');
     }
-  } catch (error: any) {
-    return json({ toast: { message: error.message, type: 'error' } });
-  }
-};
-
-export const loader = async () => {
-  const sliders = await getSliders();
-
-  return json({ sliders });
-};
-
-export default function CmsDesk() {
-  const { sliders } = useLoaderData<typeof loader>();
+  }, []);
 
   return (
-    <div className='container flex flex-col gap-8'>
-      <SliderInput
-        label='Banners'
-        type='banner'
-        defaultImages={
-          sliders.find((slider) => slider.sld_type === 'banner')?.sld_images
-        }
-      />
+    <div>
+      <div className='w-full flex gap-4'>
+        <button
+          className={`border-2 rounded-lg p-2 transition-all ${
+            layout === 'grid' ? 'border-blue-500' : 'border-gray-300'
+          }`}
+          onClick={() => {
+            history.pushState(history.state, '', '?layout=grid');
+            setLayout('grid');
+          }}
+        >
+          <RiLayoutGridLine size={20} />
+        </button>
 
-      <SliderInput
-        label='Các dịch vụ'
-        type='services'
-        defaultImages={
-          sliders.find((slider) => slider.sld_type === 'services')?.sld_images
-        }
-        hasLink
-      />
+        <button
+          className={`border-2 rounded-lg p-2 transition-all ${
+            layout === 'list' ? 'border-blue-500' : 'border-gray-300'
+          }`}
+          onClick={() => {
+            history.pushState(history.state, '', '?layout=list');
+            setLayout('list');
+          }}
+        >
+          <RiListCheck size={20} />
+        </button>
+      </div>
 
-      <SliderInput
-        label='Kết quả điều trị mụn'
-        type='result-acnes'
-        defaultImages={
-          sliders.find((slider) => slider.sld_type === 'result-acnes')
-            ?.sld_images
-        }
-      />
-      <SliderInput
-        label='Kết quả điều trị thâm'
-        type='result-scars'
-        defaultImages={
-          sliders.find((slider) => slider.sld_type === 'result-scars')
-            ?.sld_images
-        }
-      />
-      <SliderInput
-        label='Kết quả trẻ hóa da'
-        type='result-rejuvenation'
-        defaultImages={
-          sliders.find((slider) => slider.sld_type === 'result-rejuvenation')
-            ?.sld_images
-        }
-      />
+      <div className='pt-4'>
+        {layout === 'grid' ? (
+          <ImageGridLayout images={images} />
+        ) : (
+          <ImageListLayout images={images} />
+        )}
+      </div>
 
-      <SliderInput
-        label='Khách hàng'
-        type='clients'
-        defaultImages={
-          sliders.find((slider) => slider.sld_type === 'clients')?.sld_images
-        }
-      />
+      <button
+        className='fixed bottom-24 right-10 center rounded-lg bg-blue-500 p-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg active:bg-blue-500/80'
+        onClick={() => {
+          const input = document.createElement('input');
+          input.type = 'file';
+          input.accept = 'image/*';
+          input.multiple = true;
+          input.onchange = async (e) => {
+            setLoading(true);
+            const files = (e.target as HTMLInputElement).files;
+            if (!files || files.length === 0) {
+              toast.error('No image selected');
+              setLoading(false);
+              return;
+            }
 
-      <SliderInput
-        label='Bài báo'
-        type='testimony'
-        defaultImages={
-          sliders.find((slider) => slider.sld_type === 'testimony')?.sld_images
-        }
-        hasLink
-      />
+            const res = await uploadImages(files);
+            if (res?.success !== 1) {
+              toast.error(res.toast.message);
+              setLoading(false);
+              return;
+            }
+
+            setImages((prev) => [...prev, ...res.images]);
+            setLoading(false);
+          };
+          input.style.display = 'none';
+          input.click();
+        }}
+      >
+        <RiAddLine />
+      </button>
+
+      {loading && <LoadingOverlay />}
     </div>
   );
 }

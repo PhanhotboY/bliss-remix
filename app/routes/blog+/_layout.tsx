@@ -1,4 +1,3 @@
-import { Skeleton } from '@mui/material';
 import { LinksFunction, LoaderFunctionArgs } from '@remix-run/node';
 import { Outlet } from '@remix-run/react';
 import { Suspense, useEffect } from 'react';
@@ -23,9 +22,7 @@ export const links: LinksFunction = () => {
 export default function BlogTemplate() {
   return (
     <>
-      <Suspense
-        fallback={<Skeleton variant='rectangular' width={210} height={60} />}
-      >
+      <Suspense fallback={<div>Loading...</div>}>
         <Header shadow />
       </Suspense>
 
@@ -33,9 +30,7 @@ export default function BlogTemplate() {
         <Outlet />
       </main>
 
-      <Suspense
-        fallback={<Skeleton variant='rectangular' width={210} height={60} />}
-      >
+      <Suspense fallback={<div>Loading...</div>}>
         <Footer />
       </Suspense>
     </>

@@ -13,7 +13,7 @@ import {
   getCategory,
   updateCategory,
 } from '~/services/category.server';
-import { getPages, getPosts } from '~/services/post.server';
+import { getPages, getPosts } from '~/services/page.server';
 
 export const action = async ({ request, params }: ActionFunctionArgs) => {
   const user = await authenticator.isAuthenticated(request, {

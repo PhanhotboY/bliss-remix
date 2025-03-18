@@ -1,6 +1,6 @@
 import { json, LoaderFunctionArgs } from '@remix-run/node';
 import { authenticator } from '~/services/auth.server';
-import { increaseViewCount } from '~/services/post.server';
+import { increaseViewCount } from '~/services/page.server';
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   try {

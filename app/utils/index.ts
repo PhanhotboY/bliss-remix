@@ -20,10 +20,6 @@ const { getProvinces, getDistrictsByProvinceCode, getWardsByDistrictCode } =
   pkg;
 const provinces = getProvinces() as Array<IProvince>;
 
-const getPublicId = (url?: string) => {
-  return url?.split('/upload/')[1] || '';
-};
-
 const ageUnit = {
   d: 'ngày',
   m: 'tháng',
@@ -90,13 +86,26 @@ const toAddressString = ({
 };
 
 const getMapLink = (html: string) => {
-  return html.match(/<iframe.*src="([^"]*)".*><\/iframe>/)?.[1];
+  return html.match(/(https:\/\/[^"]*)/)?.[1];
+};
+
+const getImageUrl = (name: string) => {
+  return `http://localhost:3000/uploads/${name}`;
+};
+
+const toVnDateString = (date: string) => {
+  return new Date(date).toLocaleDateString('vi-VN', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
 };
 
 export {
-  getPublicId,
   toAgeString,
   toCurrencyString,
   toAddressString,
   getMapLink,
+  getImageUrl,
+  toVnDateString,
 };

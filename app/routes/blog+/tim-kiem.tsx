@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Form, useLoaderData, useLocation } from '@remix-run/react';
 import SideBar from '~/routes/blog+/SideBar';
-import { getPosts } from '~/services/post.server';
+import { getPosts } from '~/services/page.server';
 import { defer, LoaderFunctionArgs } from '@remix-run/node';
 import { RiSearch2Line } from '@remixicon/react';
 import PostList from '~/components/PostList';
 import Defer from '~/components/Defer';
 import { clientFetch } from '~/lib';
-import { IPost } from '~/interfaces/post.interface';
+import { IPage } from '~/interfaces/page.interface';
 import HandsomeError from '~/components/HandsomeError';
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
@@ -32,7 +32,7 @@ export default function SearchPage() {
   const query = searchParams.get('q') || '';
   const [input, setInput] = useState(query);
 
-  const postsFetcher = (page: number): Promise<Array<IPost>> => {
+  const postsFetcher = (page: number): Promise<Array<IPage>> => {
     return clientFetch(`/api/data?getter=getPosts&page=${page}`);
   };
 

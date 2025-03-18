@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import TextInput from '~/components/TextInput';
 import { ICategory } from '~/interfaces/category.interface';
 import Select from '../Select';
-import { IPost } from '~/interfaces/post.interface';
+import { IPage } from '~/interfaces/page.interface';
 import { useState } from 'react';
 import {
   getLayer1Categories,
@@ -15,7 +15,7 @@ export default function CategoryDetail({
   categories,
   popupHidder,
 }: {
-  posts: IPost[];
+  posts: IPage[];
   category: ICategory;
   categories: ICategory[];
   popupHidder: () => void;

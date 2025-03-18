@@ -2,7 +2,7 @@ import { LoaderFunctionArgs } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import HandsomeError from '~/components/HandsomeError';
 import TextRenderer from '~/components/TextRenderer';
-import { getPage } from '~/services/post.server';
+import { getPage } from '~/services/page.server';
 import LandingPage from './LandingPage';
 import ContactPage from './ContactPage';
 import { PAGE } from '~/constants/page.constant';
@@ -16,7 +16,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   try {
     const page = await getPage(pageSlug!);
     let services = [] as IService[];
-    if (page.pst_template.ptp_code === PAGE.TEMPLATE.SERVICE_PAGE.code) {
+    if (page.pst_template === PAGE.TEMPLATE.SERVICE_PAGE.code) {
       services = await getServices();
     }
 
@@ -33,7 +33,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 export default function Page() {
   const { page } = useLoaderData<typeof loader>();
 
-  switch (page.pst_template.ptp_code) {
+  switch (page.pst_template) {
     case PAGE.TEMPLATE.LANDING_PAGE.code:
       return <LandingPage />;
 

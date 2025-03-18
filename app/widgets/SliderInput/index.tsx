@@ -4,7 +4,7 @@ import { RiAddLine } from '@remixicon/react';
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 
-import ImageInput from './ImageInput';
+import ImageInput from '~/components/ImageInput';
 import { ISliderImage } from '~/interfaces/slider.interface';
 
 export default function SliderInput({
@@ -67,7 +67,7 @@ export default function SliderInput({
       <fetcher.Form
         className='col-span-12 flex justify-between items-center'
         method='POST'
-        action={`/cmsdesk/images`}
+        action={`/cmsdesk/sliders`}
       >
         <p className='text-2xl text-[--sub4-text] font-bold'>{label}</p>
 
@@ -83,94 +83,27 @@ export default function SliderInput({
         </button>
       </fetcher.Form>
 
-      {images.map((img, i) => (
-        <div className='col-span-3' key={i}>
-          <ImageInput
-            name={`${type}-${i}`}
-            required
-            value={img.url}
-            onChange={async (url: string, e) => {
-              const toastId = toast.loading('Uploading image...');
-              try {
-                const formData = new FormData();
-                formData.append('img', e.target.files?.[0]);
-                formData.append('folder', type);
-
-                const res = await fetch('/cmsdesk/images/upload', {
-                  method: 'POST',
-                  body: formData,
-                });
-                const data = await res.json();
-                toast.update(toastId, {
-                  type: data.toast.type || 'error',
-                  render: data.toast.message,
-                  autoClose: 3000,
-                  isLoading: false,
-                });
-                setImages((prev) =>
-                  prev.map((img, index) =>
-                    index === i ? { url: data.imageUrl, alt: img.alt } : img
-                  )
-                );
-              } catch (error: any) {
-                toast.update(toastId, {
-                  type: 'error',
-                  render: error.message,
-                  isLoading: false,
-                  autoClose: 3000,
-                });
-              }
-            }}
-            onDelete={() => {
-              setImages((prev) =>
-                prev.map((img, index) =>
-                  index === i ? { url: '', alt: '' } : img
-                )
+      <div className='col-span-12'>
+        <ImageInput
+          name={`${type}`}
+          required
+          value={images.map((img) => img.url)}
+          multiple
+          onChange={async (url: string[], e) => {
+            try {
+              setImages(
+                url.map((u) => ({
+                  url: u,
+                  alt: '',
+                  link: '',
+                }))
               );
-            }}
-          />
-
-          <input
-            className='w-full border-b border-zinc-200 py-1 px-2 outline-none'
-            name={`${type}-${i}-alt`}
-            defaultValue={img.alt}
-            onChange={(e) =>
-              setImages((prev) =>
-                prev.map((img, index) =>
-                  index === i ? { ...img, alt: e.target.value } : img
-                )
-              )
+            } catch (error: any) {
+              console.error(error);
             }
-          />
-
-          {hasLink && (
-            <input
-              className='w-full border-b border-zinc-200 py-1 px-2 outline-none'
-              name={`${type}-${i}-link`}
-              defaultValue={img.link}
-              onChange={(e) =>
-                setImages((prev) =>
-                  prev.map((img, index) =>
-                    index === i ? { ...img, link: e.target.value } : img
-                  )
-                )
-              }
-            />
-          )}
-        </div>
-      ))}
-
-      <button
-        className='middle col-span-1 none center w-full rounded-lg border border-zinc-200 py-3 px-6 
-    font-sans text-sm font-bold shadow transition-all bg-zinc-200 cursor-pointer
-    hover:shadow-lg active:opacity-[0.85] 
-    active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none'
-        data-ripple-light='true'
-        type='button'
-        onClick={() => setImages([...images, { url: '', alt: '' }])}
-      >
-        <RiAddLine />
-      </button>
+          }}
+        />
+      </div>
     </div>
   );
 }
