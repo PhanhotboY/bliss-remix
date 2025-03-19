@@ -22,7 +22,7 @@ export default function Results() {
 
   return (
     <section className='container'>
-      <Heading2>HIỆU QUẢ ĐIỀU TRỊ TẠI BLISS BEAUTY CLINIC</Heading2>
+      <Heading2>THÀNH QUẢ ĐẠT ĐƯỢC TẠI HẢI ANH STARBEAUTY</Heading2>
 
       <div className='col-span-12'>
         <div className='flex justify-center space-x-0 md:space-x-4'>

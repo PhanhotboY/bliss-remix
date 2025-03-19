@@ -3,7 +3,7 @@ export default function About() {
     <section className='container gap-4 lg:gap-8'>
       <div className='col-span-12 md:col-span-6'>
         <h2 className='text-[--main-color] font-bold text-center text-3xl lg:text-5xl my-6'>
-          Về Bliss Beauty Clinic
+          Về Hải Anh Starbeauty
         </h2>
 
         <div className='overflow-y-auto h-fit md:h-[150px] lg:h-[255px] pb-4'>
@@ -44,7 +44,7 @@ export default function About() {
       <div className='col-span-12 md:col-span-6'>
         <img
           className='h-full w-full object-contain object-top'
-          src='/assets/about-bliss.png'
+          src='/assets/about-us.png'
           alt=''
         />
       </div>

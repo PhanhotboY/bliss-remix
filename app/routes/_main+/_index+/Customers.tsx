@@ -30,8 +30,8 @@ export default function Customers() {
                         <div className='w-80 lg:w-full h-fit p-8 aspect-square m-auto'>
                           <img
                             className='w-full h-full rounded-full'
-                            src={img.url}
-                            alt={img.alt}
+                            src={img.img_url}
+                            alt={img.img_title}
                           />
                         </div>
 
@@ -47,20 +47,21 @@ export default function Customers() {
                         <div className='text-center'>
                           {/* content */}
                           <p className=''>
-                            Suốt nhiều năm qua, mình luôn phải đối mặt với mụn
-                            trứng cá, khiến cho sự tự tin và tinh thần bị ảnh
-                            hưởng rất lớn. Dù từng thử qua nhiều sản phẩm nhưng
-                            không cải thiện là bao, Và mình tìm đến Bliss
-                            Beauty, sau khi được bác sĩ tư vấn chi tiết và kiểm
-                            tra da kỹ càng, mình đã đặt trọn niềm tin vào nơi
-                            đây.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit. Vivamus lacinia odio vitae vestibulum
+                            vestibulum. Cras porttitor malesuada felis. Donec
+                            commodo diam eget nisi fringilla, at maximus ligula
+                            dapibus. Proin tristique tellus in urna facilisis,
+                            vel ullamcorper nisi auctor.
                           </p>
 
                           <p>
-                            Qua mỗi buổi điều trị mình cảm thấy mụn trứng cá
-                            giảm dần, da trở nên sáng, mịn màng hơn. Từ đó, mình
-                            cảm thấy tự tin và hạnh phúc hơn trong giao tiếp,
-                            học tập thường ngày.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit. Vivamus lacinia odio vitae vestibulum
+                            vestibulum. Cras porttitor malesuada felis. Donec
+                            commodo diam eget nisi fringilla, at maximus ligula
+                            dapibus. Proin tristique tellus in urna facilisis,
+                            vel ullamcorper nisi auctor.
                           </p>
                         </div>
                       </div>

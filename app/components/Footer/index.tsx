@@ -54,7 +54,7 @@ export default function Footer() {
         </section>
 
         <section className='col-span-12 md:col-span-4 flex flex-col'>
-          <Heading3>BLISS BEAUTY CLINIC</Heading3>
+          <Heading3>HẢI ANH STARBEAUTY</Heading3>
 
           <p>
             <b>Hệ thống cơ sở</b>

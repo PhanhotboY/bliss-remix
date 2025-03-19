@@ -3,7 +3,7 @@ import Heading2 from '~/widgets/Heading2';
 export default function WhyUs() {
   return (
     <section className='container'>
-      <Heading2>6 LÝ DO NÊN CHỌN BLISS BEAUTY CLINIC</Heading2>
+      <Heading2>6 LÝ DO NÊN CHỌN HẢI ANH STARBEAUTY</Heading2>
 
       <div className='col-span-12 lg:col-span-6 grid grid-cols-6 gap-8 rounded-lg bg-[--sub1-color] p-6 font-semibold text-[--sub7-text] text-sm'>
         {reasons.map((reason, index) => (
@@ -52,28 +52,30 @@ const reasons = [
   {
     icon: '/assets/why-us/1.png',
     content:
-      'PHÒNG KHÁM CHUYÊN KHOA DA LIỄU SỬ DỤNG CÔNG NGHỆ NHẬP KHẨU TỪ CANADA',
+      'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
   {
     icon: '/assets/why-us/2.png',
     content:
-      'QUY TRÌNH ĐIỀU TRỊ CHUẨN Y KHOA ĐƯỢC FDA PHÊ DUYỆT VÀ BÁC SĨ DA LIỄU TRÊN THẾ GIỚI TIN DÙNG.',
+      'Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor.',
   },
   {
     icon: '/assets/why-us/3.png',
-    content: '100% BÁC SĨ DA LIỄU TRỰC TIẾP KHÁM .',
+    content: 'Excepteur sint occaecat cupidatat non proident sunt in culpa.',
   },
   {
     icon: '/assets/why-us/4.png',
-    content: 'HIỆU QUẢ TƯƠNG ỨNG VỚI GÓI DỊCH V.',
+    content: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem.',
   },
   {
     icon: '/assets/why-us/5.png',
-    content: '100% ĐIỀU DƯỠNG Y KHOA ĐƯỢC ĐÀO TẠO CHUYÊN SÂU',
+    content:
+      'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.',
   },
   {
     icon: '/assets/why-us/6.png',
-    content: 'TRANG BỊ NHÀ THUỐC CHUẨN GPP VỚI THUỐC ĐẶC TRỊ CHÍNH HÃNG 100%.',
+    content:
+      'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur adipisci velit.',
   },
 ];
 
@@ -81,16 +83,19 @@ const items = [
   {
     title: '100%',
     img: '/assets/why-us/7.png',
-    content: 'Bác sĩ tại phòng khám là bác sĩ chuyên khoa da liễu',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
   {
     title: '2196+',
     img: '/assets/why-us/8.png',
-    content: 'Bệnh nhân đã và đang điều trị tại phòng khám',
+    content:
+      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
   },
   {
     title: '50+',
     img: '/assets/why-us/9.png',
-    content: 'Dịch vụ làm đẹp chuẩn Quốc tế với công nghệ cao cấp',
+    content:
+      'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
   },
 ];

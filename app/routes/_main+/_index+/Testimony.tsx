@@ -8,28 +8,28 @@ export default function Testimony() {
 
   return (
     <section className='container'>
-      <Heading2>BÁO CHÍ NÓI GÌ VỀ BLISS BEAUTY CLINIC</Heading2>
+      <Heading2>BÁO CHÍ NÓI GÌ VỀ HẢI ANH STARBEAUTY</Heading2>
 
       <div className='col-span-12 flex items-center justify-evenly gap-8 flex-wrap'>
         {sliders
           .find((sli) => sli.sld_type === 'testimony')
           ?.sld_images.map((img, i) => (
             <div key={i} className='h-28 max-w-60'>
-              {img.link ? (
-                <Link to={img.link} target='_blank'>
+              {img.img_link ? (
+                <Link to={img.img_link} target='_blank'>
                   <img
                     className='h-full object-contain object-center'
-                    src={img.url}
-                    alt={img.alt}
-                    title={img.alt}
+                    src={img.img_url}
+                    alt={img.img_title}
+                    title={img.img_title}
                   />
                 </Link>
               ) : (
                 <img
                   className='h-full object-contain object-center'
-                  src={img.url}
-                  alt={img.alt}
-                  title={img.alt}
+                  src={img.img_url}
+                  alt={img.img_title}
+                  title={img.img_title}
                 />
               )}
             </div>
