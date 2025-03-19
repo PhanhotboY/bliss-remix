@@ -3,6 +3,7 @@ import ImagePreview from './ImagePreview';
 import ImagePicker from './ImagePicker';
 import { useState } from 'react';
 import { IImage } from '~/interfaces/image.interface';
+import { isEmpltyObject } from '~/utils';
 
 export default function ImageInput({
   label,
@@ -48,7 +49,7 @@ export default function ImageInput({
           multiple ? 'grid' : 'flex'
         } grid-cols-4 gap-4 items-center justify-center`}
       >
-        {!Array.isArray(value) && !!value && (
+        {!Array.isArray(value) && isEmpltyObject(value) && (
           <ImagePreview
             src={value?.img_url}
             handleOpenPicker={handleOpenPicker}

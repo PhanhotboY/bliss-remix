@@ -9,6 +9,8 @@ import { PAGE } from '~/constants/page.constant';
 import { getServices } from '~/services/service.server';
 import { IService } from '~/interfaces/service.interface';
 import ServicePage from './ServicePage';
+import { IBranch } from '~/interfaces/branch.interface';
+import { getBranches } from '~/services/branch.server';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const { pageSlug } = params;
@@ -16,13 +18,28 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   try {
     const page = await getPage(pageSlug!);
     let services = [] as IService[];
-    if (page.pst_template === PAGE.TEMPLATE.SERVICE_PAGE.code) {
-      services = await getServices();
+    let branches = [] as IBranch[];
+
+    switch (page.pst_template) {
+      case PAGE.TEMPLATE.LANDING_PAGE.code:
+        break;
+
+      case PAGE.TEMPLATE.CONTACT_PAGE.code:
+        branches = await getBranches();
+        break;
+
+      case PAGE.TEMPLATE.SERVICE_PAGE.code:
+        services = await getServices();
+        break;
+
+      default:
+        break;
     }
 
     return {
       page,
       services,
+      branches,
     };
   } catch (error) {
     // console.error(error);

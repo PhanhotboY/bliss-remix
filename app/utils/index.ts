@@ -97,10 +97,15 @@ const toVnDateString = (date: string) => {
   });
 };
 
+const isEmpltyObject = (obj: any) => {
+  return Object.keys(obj || {}).length === 0;
+};
+
 export {
   toAgeString,
   toCurrencyString,
   toAddressString,
   getMapLink,
   toVnDateString,
+  isEmpltyObject,
 };
