@@ -1,14 +1,6 @@
-import {
-  defer,
-  json,
-  LinksFunction,
-  LoaderFunctionArgs,
-} from '@remix-run/node';
+import { defer, LinksFunction, LoaderFunctionArgs } from '@remix-run/node';
 
-import PostBox from '~/components/PostBox';
 import { IPage } from '~/interfaces/page.interface';
-import SeemoreButton from '~/components/SeemoreButton';
-import SmallPostBox from '~/components/SmallPostBox';
 import VerticalArtical from '~/components/Post/Vertical';
 import HorizontalPost from '~/components/Post/Horizontal';
 import { getPosts } from '~/services/page.server';

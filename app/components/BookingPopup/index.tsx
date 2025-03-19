@@ -4,7 +4,7 @@ import BookingForm from '../BookingForm';
 import { useRootLoaderData } from '~/lib/useRootLoaderData';
 
 export default function BookingPopup({ hidePopup }: { hidePopup: () => void }) {
-  const { appSettings } = useRootLoaderData();
+  const { mainBranch } = useRootLoaderData();
 
   useEffect(() => {
     document.body.style.height = '100vh';
@@ -22,20 +22,20 @@ export default function BookingPopup({ hidePopup }: { hidePopup: () => void }) {
     >
       <section className='container h-fit' onClick={(e) => e.stopPropagation()}>
         <div
-          className='col-span-12 grid grid-cols-12 gap-8 p-8 rounded-xl'
-          style={{
-            background:
-              "url('/assets/popup-bg.png') no-repeat center center/cover",
-          }}
+          className='col-span-12 grid grid-cols-12 gap-8 p-8 rounded-xl bg-gradient-to-br from-white to-[--sub2-color]'
+          // style={{
+          //   background:
+          //     "url('/assets/popup-bg.png') no-repeat center center/cover",
+          // }}
         >
-          <div className='hidden lg:flex col-span-5 flex-col items-center p-4 gap-4 rounded-xl bg-[--sub4-color] text-[--sub11-text]'>
+          <div className='hidden lg:flex col-span-5 flex-col items-center p-4 gap-4 rounded-xl bg-[--sub3-color] text-[--sub1-text]'>
             <div className='w-60 mx-auto'>
               <img src='/assets/telephone.png' alt='telephone icon' />
             </div>
 
             <p className='capitalize text-2xl font-bold'>Liên Hệ Hotline</p>
 
-            <p className='text-3xl font-semibold'>{appSettings.app_msisdn}</p>
+            <p className='text-3xl font-semibold'>{mainBranch.bra_msisdn}</p>
 
             <p>Giải quyết câu hỏi của khách hàng</p>
 

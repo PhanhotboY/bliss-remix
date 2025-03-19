@@ -44,7 +44,7 @@ export default function HorizontalPost({
       >
         <Link to={`/blog/${post.pst_slug}`}>
           <img
-            src={post.pst_thumbnail}
+            src={post.pst_thumbnail?.img_url}
             alt={post.pst_title}
             title={post.pst_title}
           />

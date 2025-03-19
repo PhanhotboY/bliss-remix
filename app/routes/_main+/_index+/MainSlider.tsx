@@ -79,8 +79,8 @@ export default function MainSlider() {
                     {/* <Link to='/'> */}
                     <img
                       className='w-full h-full object-cover'
-                      src={img.url}
-                      alt={img.alt}
+                      src={img.img_url}
+                      alt={img.img_title}
                     />
                     {/* </Link> */}
                   </div>

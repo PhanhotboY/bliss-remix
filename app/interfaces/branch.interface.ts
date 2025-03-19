@@ -1,3 +1,5 @@
+import { IImage } from './image.interface';
+
 export interface IBranch {
   id: string;
   bra_name: string;
@@ -8,7 +10,7 @@ export interface IBranch {
   };
   bra_email: string;
   bra_msisdn: string;
-  bra_thumbnail: string;
+  bra_thumbnail: IImage;
   bra_map: string;
   bra_isMain: boolean;
   createdAt: Date;

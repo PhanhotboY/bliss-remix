@@ -7,7 +7,7 @@ import Hydrated from '../Hydrated';
 import { useEffect } from 'react';
 
 export default function Footer() {
-  const { appSettings: app } = useRootLoaderData();
+  const { appSettings: app, mainBranch } = useRootLoaderData();
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -32,7 +32,7 @@ export default function Footer() {
             <Link to='/'>
               <img
                 className='h-full w-full object-contain object-left z-0'
-                src={app.app_logo}
+                src={app.app_logo?.img_url}
                 alt={app.app_title}
               />
             </Link>
@@ -43,7 +43,7 @@ export default function Footer() {
           <div className='w-full'>
             <iframe
               className='w-full'
-              src={getMapLink(app.app_google.map)}
+              src={getMapLink(mainBranch.bra_map)}
               height='150'
               style={{ border: 0 }}
               allowFullScreen={true}
@@ -61,7 +61,7 @@ export default function Footer() {
           </p>
           <p className='leading-8'>
             <RiMapPinFill className='inline' size={20} />{' '}
-            {toAddressString(app.app_address)}
+            {toAddressString(mainBranch.bra_address)}
           </p>
 
           <br />
@@ -70,14 +70,20 @@ export default function Footer() {
           </p>
           <p>
             <b>Hotline Tư vấn & CSKH:</b>{' '}
-            <a className='hover:underline' href={`tel:${app.app_msisdn}`}>
-              {app.app_msisdn}
+            <a
+              className='hover:underline'
+              href={`tel:${mainBranch.bra_msisdn}`}
+            >
+              {mainBranch.bra_msisdn}
             </a>
           </p>
           <p>
             <b>Email:</b>{' '}
-            <a className='hover:underline' href={`mailto:${app.app_email}`}>
-              {app.app_email}
+            <a
+              className='hover:underline'
+              href={`mailto:${mainBranch.bra_email}`}
+            >
+              {mainBranch.bra_email}
             </a>
           </p>
         </section>
@@ -89,7 +95,7 @@ export default function Footer() {
             {() => (
               <div
                 className='fb-page'
-                data-href='https://www.facebook.com/@iconictalents.vn'
+                data-href={app.app_social.facebook}
                 data-tabs='timeline'
                 data-width='500px'
                 data-height='500px'
@@ -99,12 +105,10 @@ export default function Footer() {
                 data-show-facepile='true'
               >
                 <blockquote
-                  cite='https://www.facebook.com/@iconictalents.vn'
+                  cite={app.app_social.facebook}
                   className='fb-xfbml-parse-ignore'
                 >
-                  <a href='https://www.facebook.com/@iconictalents.vn'>
-                    Iconic Talents - Sinh Trắc Vân Tay Hiện Đại
-                  </a>
+                  <a href={app.app_social.facebook}>{app.app_title}</a>
                 </blockquote>
               </div>
             )}

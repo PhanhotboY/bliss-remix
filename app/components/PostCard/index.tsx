@@ -22,7 +22,7 @@ export default function PostCard({
         className='w-full h-full rounded-xl overflow-hidden'
       >
         <img
-          src={post.pst_thumbnail || '/placeholder.png'}
+          src={post.pst_thumbnail?.img_url || '/placeholder.png'}
           alt={post.pst_title}
           loading='lazy'
           className='aspect-video w-full object-cover object-center  group-hover:scale-105 transition-all ease duration-300 '

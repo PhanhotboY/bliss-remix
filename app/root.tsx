@@ -16,6 +16,7 @@ import { getAppSettings } from './services/app.server';
 import Hydrated from './components/Hydrated';
 import BackToTop from './widgets/BackToTop';
 import { getCategories } from './services/category.server';
+import { getBranches, getMainBranch } from './services/branch.server';
 
 export const links: LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -47,12 +48,18 @@ export const meta: MetaFunction = () => {
 };
 
 export const loader = async () => {
-  const appSettings = await getAppSettings();
-  const categories = await getCategories();
+  // const appSettings = await getAppSettings();
+  // const categories = await getCategories();
+  const [appSettings, categories, mainBranch] = await Promise.all([
+    getAppSettings(),
+    getCategories(),
+    getMainBranch(),
+  ]);
 
   return {
     appSettings,
     categories,
+    mainBranch,
   };
 };
 

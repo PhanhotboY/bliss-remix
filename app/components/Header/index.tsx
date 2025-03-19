@@ -5,7 +5,7 @@ import { toAddressString } from '~/utils';
 import StickyHeader from './StickyHeader';
 
 export default function Header({ shadow }: { shadow?: boolean }) {
-  const { appSettings } = useRootLoaderData();
+  const { mainBranch } = useRootLoaderData();
 
   return (
     <>
@@ -27,9 +27,9 @@ export default function Header({ shadow }: { shadow?: boolean }) {
             <span>
               <a
                 className='hover:underline'
-                href={`tel:${appSettings.app_msisdn}`}
+                href={`tel:${mainBranch.bra_msisdn}`}
               >
-                {appSettings.app_msisdn}
+                {mainBranch.bra_msisdn}
               </a>
             </span>
           </li>
@@ -39,7 +39,7 @@ export default function Header({ shadow }: { shadow?: boolean }) {
               <RiMapPinLine size={16} />
             </div>
 
-            <span>{toAddressString(appSettings.app_address)}</span>
+            <span>{toAddressString(mainBranch.bra_address)}</span>
           </li>
         </ul>
       </div>

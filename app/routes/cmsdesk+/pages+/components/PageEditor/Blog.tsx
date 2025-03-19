@@ -4,6 +4,7 @@ import TextEditor from '@components/TextEditor/index.client';
 import TextInput from '@components/TextInput';
 import ImageInput from '@components/ImageInput';
 import { PAGE } from '~/constants/page.constant';
+import { IImage } from '~/interfaces/image.interface';
 
 export default function BlogEditor({
   titleState: [title, setTitle],
@@ -14,7 +15,7 @@ export default function BlogEditor({
 }: {
   templateState: [string, (template: string) => void];
   titleState: [string, (title: string) => void];
-  thumbnailState: [string, (thumbnail: string) => void];
+  thumbnailState: [IImage, (thumbnail: IImage) => void];
   categoryState: [string, (category: string) => void];
   contentState: [string, (content: string) => void];
 }) {
@@ -40,7 +41,9 @@ export default function BlogEditor({
           name='thumbnail'
           id='thumbnail'
           value={thumbnail}
-          onChange={(value) => setThumbnail(value)}
+          onChange={(value) =>
+            Array.isArray(value) ? setThumbnail(value[0]) : setThumbnail(value)
+          }
         />
       </div>
 

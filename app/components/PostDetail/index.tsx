@@ -14,7 +14,7 @@ export default function PostDetail({ post }: { post: IPageDetail }) {
       <article className={`block print:m-0`}>
         <img
           className='w-32 m-auto hidden print:block'
-          src={appSettings.app_logo}
+          src={appSettings.app_logo?.img_url}
           alt={appSettings.app_title}
         />
         <h1 className='!text-3xl font-semibold my-4'>{post.pst_title}</h1>
@@ -32,7 +32,7 @@ export default function PostDetail({ post }: { post: IPageDetail }) {
 
         <div className='w-full my-4'>
           <img
-            src={post.pst_thumbnail}
+            src={post.pst_thumbnail?.img_url}
             alt={post.pst_title}
             className='w-full h-auto'
           />

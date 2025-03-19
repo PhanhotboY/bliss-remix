@@ -36,7 +36,7 @@ export default function StickyHeader({ shadow }: { shadow?: boolean }) {
             <Link className='h-full py-2' to='/'>
               <img
                 className='h-full w-full object-contain'
-                src={appSettings.app_logo}
+                src={appSettings.app_logo?.img_url}
                 alt={appSettings.app_title}
               />
             </Link>

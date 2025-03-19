@@ -1,7 +1,6 @@
 import { LinksFunction, LoaderFunctionArgs } from '@remix-run/node';
 import { Outlet } from '@remix-run/react';
 import { Suspense, useEffect } from 'react';
-import BlogHeader from '~/components/BlogHeader';
 import Footer from '~/components/Footer';
 import HandsomeError from '~/components/HandsomeError';
 import Header from '~/components/Header';

@@ -119,7 +119,7 @@ export default function ManageCategories() {
         break;
     }
   }, [fetcher.state]);
-  console.log(categories);
+
   return (
     <div className='grid grid-cols-12 gap-16'>
       {loading && <LoadingOverlay />}

@@ -4,8 +4,8 @@ import Slider from 'react-slick';
 import Heading2 from '~/widgets/Heading2';
 import { loader } from '~/routes/_main+/_index+/_index';
 import { RefObject, useRef, useState } from 'react';
-import { ISliderImage } from '~/interfaces/slider.interface';
 import Hydrated from '~/components/Hydrated';
+import { IImage } from '~/interfaces/image.interface';
 
 // @ts-ignore
 const SliderComponent = !!Slider.default ? Slider.default : Slider;
@@ -14,7 +14,7 @@ export default function Results() {
   const { sliders } = useLoaderData<typeof loader>();
 
   const [activeType, setActiveType] = useState(RESULT_TYPE.ACNES.VALUE);
-  const [results, setResults] = useState<ISliderImage[]>(
+  const [results, setResults] = useState<IImage[]>(
     sliders.find((slider) => slider.sld_type === activeType)?.sld_images || []
   );
 
@@ -61,8 +61,8 @@ export default function Results() {
                 <div key={i} className='px-4 aspect-square'>
                   <img
                     className='w-full h-full object-contain'
-                    src={img.url}
-                    alt={img.alt}
+                    src={img.img_url}
+                    alt={img.img_title}
                   />
                 </div>
               ))}

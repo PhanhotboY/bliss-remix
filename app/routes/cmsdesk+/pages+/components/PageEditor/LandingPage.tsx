@@ -1,6 +1,7 @@
 import Select from '@widgets/Select/index';
 import TextInput from '@components/TextInput';
 import { PAGE } from '~/constants/page.constant';
+import { IImage } from '~/interfaces/image.interface';
 
 export default function LandingPageEditor({
   titleState: [title, setTitle],
@@ -8,7 +9,7 @@ export default function LandingPageEditor({
 }: {
   templateState: [string, (template: string) => void];
   titleState: [string, (title: string) => void];
-  thumbnailState: [string, (thumbnail: string) => void];
+  thumbnailState: [IImage, (thumbnail: IImage) => void];
   categoryState: [string, (category: string) => void];
   contentState: [string, (content: string) => void];
 }) {

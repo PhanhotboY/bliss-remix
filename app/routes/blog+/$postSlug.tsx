@@ -6,11 +6,7 @@ import HandsomeError from '~/components/HandsomeError';
 import { getPosts, getPostDetail } from '~/services/page.server';
 import PostDetail from '~/components/PostDetail';
 import Hydrated from '~/components/Hydrated';
-import SameCategoryArticles from '~/widgets/SameCategoryArticles';
 import ShareBox from '~/widgets/ShareBox';
-import RelatedArticle from '~/widgets/RelatedArticle';
-import SmallPostBox from '~/components/SmallPostBox';
-import FeaturedNews from '~/components/FeaturedNews';
 import ArticleList from '~/components/PostList';
 
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {

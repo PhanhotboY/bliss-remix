@@ -26,11 +26,11 @@ export default function FeaturedServices() {
           .find((s) => s.sld_type === 'services')
           ?.sld_images.map((s, i) => (
             <div className='col-span-12 md:col-span-6' key={i}>
-              <Link to={`${s.link}`}>
+              <Link to={`${s.img_link}`}>
                 <img
                   className='w-full h-full object-contain object-center'
-                  src={s.url}
-                  alt={s.alt}
+                  src={s.img_url}
+                  alt={s.img_title}
                 />
               </Link>
             </div>

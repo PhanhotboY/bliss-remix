@@ -159,10 +159,7 @@ export default function ImagePopup() {
         className='container gap-8 p-8 rounded-xl bg-white divide-x divide-zinc-200 overflow-hidden'
         onClick={(e) => e.stopPropagation()}
       >
-        <div
-          className='col-span-6 flex-col items-center rounded-xl 
-          text-[--sub11-text] overflow-hidden'
-        >
+        <div className='col-span-6 flex-col items-center rounded-xl overflow-hidden'>
           <img
             src={image.img_url}
             alt={image.img_title}

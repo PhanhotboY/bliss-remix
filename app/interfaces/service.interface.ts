@@ -6,12 +6,7 @@ export interface IService {
   svc_description: string;
   svc_basePrice: number;
   svc_discountPrice: number;
-  svc_page: {
-    _id: string;
-    pst_title: string;
-    pst_thumbnail: string;
-    pst_slug: string;
-  };
+  svc_page: IPage;
   createdAt: string;
   updatedAt: string;
 }

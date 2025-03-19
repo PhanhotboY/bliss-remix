@@ -19,7 +19,7 @@ export const PAGE = {
       code: 'landing',
     },
     CONTACT_PAGE: {
-      name: 'Contact',
+      name: 'Liên hệ',
       code: 'contact',
     },
     SERVICE_PAGE: {

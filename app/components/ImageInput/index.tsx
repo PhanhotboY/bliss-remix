@@ -48,7 +48,7 @@ export default function ImageInput({
           multiple ? 'grid' : 'flex'
         } grid-cols-4 gap-4 items-center justify-center`}
       >
-        {!Array.isArray(value) && (
+        {!Array.isArray(value) && !!value && (
           <ImagePreview
             src={value?.img_url}
             handleOpenPicker={handleOpenPicker}

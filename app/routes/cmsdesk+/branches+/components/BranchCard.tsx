@@ -9,9 +9,9 @@ export default function BranchCard({
   branch: IBranch;
   cols?: { sm?: number; md?: number; lg?: number; xl?: number };
 }) {
-  const colClasses = `col-span-4 sm:col-span-${cols?.sm || 6} md:col-span-${
+  const colClasses = `col-span-3 sm:col-span-${cols?.sm || 6} md:col-span-${
     cols?.md || 4
-  } lg:col-span-${cols?.lg || 3} xl:col-span-${cols?.xl || 3}`;
+  } lg:col-span-${cols?.lg || 4} xl:col-span-${cols?.xl || 4}`;
 
   return (
     <div
@@ -42,7 +42,7 @@ export default function BranchCard({
               </span>
             </h2>
 
-            <div className='text-[--sub6-text] text-sm w-2/3 overflow-hidden'>
+            <div className='text-gray-500 text-sm w-2/3 overflow-hidden'>
               <p className='truncate'>{branch.bra_email}</p>
               <p>{branch.bra_msisdn}</p>
             </div>

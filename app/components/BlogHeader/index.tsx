@@ -5,13 +5,7 @@ import {
   RiListCheck,
 } from '@remixicon/react';
 import { ReactNode, useEffect, useState } from 'react';
-import {
-  Form,
-  Link,
-  useFetcher,
-  useLoaderData,
-  useLocation,
-} from '@remix-run/react';
+import { Form, Link, useLocation } from '@remix-run/react';
 
 import style from './index.module.css';
 import { loader } from '~/root';
@@ -25,7 +19,7 @@ export default function BlogHeader({}: // theme,
   // theme: string;
   // setTheme: (theme: 'light' | 'dark') => void;
 }) {
-  const { appSettings } = useRootLoaderData();
+  const { appSettings, mainBranch } = useRootLoaderData();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -41,8 +35,8 @@ export default function BlogHeader({}: // theme,
       <header className='shadow-xl md:shadow-none fixed md:static top-0 w-full bg-white'>
         <Contact
           contact={{
-            email: appSettings.app_email,
-            phone: appSettings.app_msisdn,
+            email: mainBranch.bra_email,
+            phone: mainBranch.bra_msisdn,
           }}
         >
           {/* <Checkbox
@@ -68,7 +62,7 @@ export default function BlogHeader({}: // theme,
 
           <div className='w-40'>
             <Link className='block' to='/blog' title={appSettings.app_title}>
-              <img src={appSettings.app_logo} alt='Logo' />
+              <img src={appSettings.app_logo?.img_url} alt='Logo' />
             </Link>
           </div>
 

@@ -1,8 +1,10 @@
+import { IImage } from './image.interface';
+
 export interface IPage {
   id: string;
   pst_title: string;
   pst_content: string;
-  pst_thumbnail: string;
+  pst_thumbnail: IImage;
   pst_slug: string;
   pst_views: number;
   pst_excerpt: string;

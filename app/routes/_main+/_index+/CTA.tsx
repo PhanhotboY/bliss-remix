@@ -2,7 +2,7 @@ import BookingForm from '~/components/BookingForm';
 import { useRootLoaderData } from '~/lib/useRootLoaderData';
 
 export default function CTA() {
-  const { appSettings } = useRootLoaderData();
+  const { mainBranch } = useRootLoaderData();
 
   return (
     <section className=''>
@@ -18,7 +18,13 @@ export default function CTA() {
 
           <div className='col-span-12 text-2xl uppercase text-3xl text-[--sub9-text] font-bold flex justify-center mt-4 flex-wrap'>
             <h3 className='w-full lg:w-1/2 text-inherit p-4'>
-              Hotline Tư vấn & CSKH: {appSettings?.hotline}
+              Hotline Tư vấn & CSKH:{' '}
+              <a
+                className='hover:underline'
+                href={`tel:${mainBranch.bra_msisdn}`}
+              >
+                {mainBranch.bra_msisdn}
+              </a>
             </h3>
 
             <h3 className='w-full lg:w-1/2 text-inherit p-4'>

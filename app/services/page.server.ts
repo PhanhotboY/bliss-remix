@@ -31,8 +31,8 @@ const getUnpublishedPages = async ({
   return pages as IPage[];
 };
 
-const getPostDetail = async (id: string, request: ISessionUser) => {
-  const page = await fetcher(`/pages/${id}`, { request });
+const getPostDetail = async (id: string) => {
+  const page = await fetcher(`/pages/${id}`);
   return page as IPageDetail;
 };
 

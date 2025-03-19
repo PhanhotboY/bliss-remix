@@ -23,7 +23,7 @@ export default function VerticalArtical({
           <Link to={`/blog/${post.pst_slug}`} className='thumb-wrapper'>
             <img
               className='object-cover w-full h-full'
-              src={post.pst_thumbnail}
+              src={post.pst_thumbnail?.img_url}
               alt={post.pst_title}
               title={post.pst_title}
             />

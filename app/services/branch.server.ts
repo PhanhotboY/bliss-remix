@@ -7,6 +7,11 @@ const getBranches = async () => {
   return branches as IBranch[];
 };
 
+const getMainBranch = async () => {
+  const branch = await fetcher(`/branches/main`);
+  return branch as IBranchDetail;
+};
+
 const getBranchDetail = async (id: string) => {
   const branch = await fetcher(`/branches/${id}`);
   return branch as IBranchDetail;
@@ -40,6 +45,7 @@ const deleteBranch = async (id: string, request: ISessionUser) => {
 
 export {
   getBranches,
+  getMainBranch,
   getBranchDetail,
   createBranch,
   updateBranch,
