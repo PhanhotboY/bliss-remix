@@ -26,7 +26,9 @@ export default function BranchEditor({
   const [name, setName] = useState(branch?.bra_name || '');
   const [email, setEmail] = useState(branch?.bra_email || '');
   const [msisdn, setMsisdn] = useState(branch?.bra_msisdn || '');
-  const [thumbnail, setThumbnail] = useState(branch?.bra_thumbnail || '');
+  const [thumbnail, setThumbnail] = useState(
+    branch?.bra_thumbnail || ({} as any)
+  );
   const [province, setProvince] = useState(
     getProvinceBySlug(branch?.bra_address.province) || provinces[0]
   );

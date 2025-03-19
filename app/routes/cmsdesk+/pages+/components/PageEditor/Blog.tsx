@@ -41,6 +41,7 @@ export default function BlogEditor({
           name='thumbnail'
           id='thumbnail'
           value={thumbnail}
+          required
           onChange={(value) =>
             Array.isArray(value) ? setThumbnail(value[0]) : setThumbnail(value)
           }

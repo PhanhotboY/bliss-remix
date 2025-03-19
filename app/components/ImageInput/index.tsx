@@ -49,7 +49,7 @@ export default function ImageInput({
           multiple ? 'grid' : 'flex'
         } grid-cols-4 gap-4 items-center justify-center`}
       >
-        {!Array.isArray(value) && isEmpltyObject(value) && (
+        {!Array.isArray(value) && !isEmpltyObject(value) && (
           <ImagePreview
             src={value?.img_url}
             handleOpenPicker={handleOpenPicker}
@@ -68,7 +68,9 @@ export default function ImageInput({
 
         <label
           className='cursor-pointer flex-col w-full items-center rounded-xl border-2 border-dashed border-blue-400 bg-white p-6 text-center'
-          style={{ display: value && !multiple ? 'none' : 'flex' }}
+          style={{
+            display: !isEmpltyObject(value) && !multiple ? 'none' : 'flex',
+          }}
           onClick={handleOpenPicker}
         >
           <RiUploadCloud2Line className='w-6 h-6 text-blue-400' />
