@@ -24,19 +24,19 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     }
     const images = await createImage(formData, user);
 
-    return Response.json({
+    return {
       images,
       success: 1,
       file: {
         url: (images[0].img_url as string) || '',
       },
       toast: { message: 'Upload ảnh thành công!', type: 'success' },
-    });
+    };
   } catch (error: any) {
     console.error(error);
-    return Response.json({
+    return {
       success: 0,
       toast: { message: error.message, type: 'error' },
-    });
+    };
   }
 };
