@@ -1,22 +1,18 @@
-import { ActionFunctionArgs, json } from '@remix-run/node';
 import { useFetcher } from '@remix-run/react';
-import { RiAddLine } from '@remixicon/react';
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import ImageInput from '~/components/ImageInput';
-import { ISliderImage } from '~/interfaces/slider.interface';
+import { IImage } from '~/interfaces/image.interface';
 
 export default function SliderInput({
   label,
   type,
-  hasLink = false,
   defaultImages = [],
 }: {
   label: string;
   type: string;
-  hasLink?: boolean;
-  defaultImages?: Array<ISliderImage>;
+  defaultImages?: Array<IImage>;
 }) {
   const fetcher = useFetcher<any>();
   const toastIdRef = useRef<any>(null);
@@ -72,7 +68,12 @@ export default function SliderInput({
         <p className='text-2xl text-[--sub4-text] font-bold'>{label}</p>
 
         <input hidden name='type' defaultValue={type} />
-        <input hidden name='images' value={JSON.stringify(images)} readOnly />
+        <input
+          hidden
+          name='images'
+          value={JSON.stringify(images.map((img) => img.id))}
+          readOnly
+        />
         <button
           className='middle none center w-fit rounded-lg bg-blue-500 py-3 px-6 font-sans text-sm font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none'
           data-ripple-light='true'
@@ -87,17 +88,11 @@ export default function SliderInput({
         <ImageInput
           name={`${type}`}
           required
-          value={images.map((img) => img.url)}
+          value={images}
           multiple
-          onChange={async (url: string[], e) => {
+          onChange={async (value) => {
             try {
-              setImages(
-                url.map((u) => ({
-                  url: u,
-                  alt: '',
-                  link: '',
-                }))
-              );
+              setImages(Array.isArray(value) ? value : [value]);
             } catch (error: any) {
               console.error(error);
             }

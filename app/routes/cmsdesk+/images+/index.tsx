@@ -5,7 +5,6 @@ import { Link, useLoaderData, useLocation } from '@remix-run/react';
 
 import { IImage } from '~/interfaces/image.interface';
 import { getImages } from '~/services/image.server';
-import { getImageUrl } from '~/utils';
 import LoadingOverlay from '~/components/LoadingOverlay';
 import { uploadImages } from '~/services/image.client';
 import HandsomeError from '~/components/HandsomeError';

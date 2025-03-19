@@ -2,6 +2,7 @@ import { RiUploadCloud2Line } from '@remixicon/react';
 import ImagePreview from './ImagePreview';
 import ImagePicker from './ImagePicker';
 import { useState } from 'react';
+import { IImage } from '~/interfaces/image.interface';
 
 export default function ImageInput({
   label,
@@ -13,8 +14,8 @@ export default function ImageInput({
 }: {
   name: string;
   label?: string;
-  value: string | string[];
-  onChange: (...args: any) => void;
+  value: IImage | IImage[];
+  onChange: (value: IImage | IImage[], ...args: any) => void;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'>) {
   const [showPicker, setShowPicker] = useState(false);
 
@@ -26,7 +27,7 @@ export default function ImageInput({
     setShowPicker(false);
   };
 
-  const handleSelectImage = (selectedImages: string[]) => {
+  const handleSelectImage = (selectedImages: IImage[]) => {
     if (multiple) {
       onChange(selectedImages);
     } else {
@@ -47,14 +48,21 @@ export default function ImageInput({
           multiple ? 'grid' : 'flex'
         } grid-cols-4 gap-4 items-center justify-center`}
       >
-        {typeof value === 'string' && !!value && (
-          <ImagePreview src={value} handleOpenPicker={handleOpenPicker} />
+        {!Array.isArray(value) && (
+          <ImagePreview
+            src={value?.img_url}
+            handleOpenPicker={handleOpenPicker}
+          />
         )}
 
         {Array.isArray(value) &&
           !!value.length &&
           value.map((v, i) => (
-            <ImagePreview key={i} src={v} handleOpenPicker={handleOpenPicker} />
+            <ImagePreview
+              key={i}
+              src={v.img_url}
+              handleOpenPicker={handleOpenPicker}
+            />
           ))}
 
         <label
@@ -73,7 +81,14 @@ export default function ImageInput({
           </p>
         </label>
 
-        <input type='hidden' name={name} value={value} {...props} />
+        <input
+          type='hidden'
+          name={name}
+          value={
+            Array.isArray(value) ? value.map((v) => v.id) : value?.id || ''
+          }
+          {...props}
+        />
       </div>
 
       {showPicker && (

@@ -53,7 +53,7 @@ export const loader = async () => {
 
 export default function CmsDesk() {
   const { sliders } = useLoaderData<typeof loader>();
-
+  console.log(sliders);
   return (
     <div className='container flex flex-col gap-8'>
       <SliderInput
@@ -70,7 +70,6 @@ export default function CmsDesk() {
         defaultImages={
           sliders.find((slider) => slider.sld_type === 'services')?.sld_images
         }
-        hasLink
       />
 
       <SliderInput
@@ -112,7 +111,6 @@ export default function CmsDesk() {
         defaultImages={
           sliders.find((slider) => slider.sld_type === 'testimony')?.sld_images
         }
-        hasLink
       />
     </div>
   );

@@ -1,6 +1,5 @@
 import { Link } from '@remix-run/react';
 import { IImage } from '~/interfaces/image.interface';
-import { getImageUrl } from '~/utils';
 import ImageTypeMarkup from './ImageTypeMarkup';
 
 export default function ImageListLayout({ images }: { images: IImage[] }) {
@@ -38,14 +37,14 @@ export default function ImageListLayout({ images }: { images: IImage[] }) {
             className='bg-white lg:hover:bg-zinc-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0'
           >
             <td className='w-full lg:w-auto text-center border border-b block lg:table-cell relative lg:static hover:underline hover:text-[--main-color]'>
-              <Link to={`/cmsdesk/images/${img.id}`}>
+              <Link to={`/cmsdesk/images/${img.img_name}`}>
                 <span className='lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase'>
                   Hình ảnh
                 </span>
 
                 <div className='w-24 aspect-square overflow-hidden mx-auto'>
                   <img
-                    src={getImageUrl(img.img_name)}
+                    src={img.img_url}
                     alt={img.img_title}
                     className='object-contain'
                   />

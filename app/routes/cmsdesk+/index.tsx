@@ -41,7 +41,7 @@ export default function CmsDesk() {
         youtube !== appSettings.app_social.youtube ||
         zalo !== appSettings.app_social.zalo ||
         taxCode !== appSettings.app_taxCode ||
-        logo !== appSettings.app_logo ||
+        logo?.id !== appSettings.app_logo?.id ||
         headScripts !== appSettings.app_headScripts ||
         bodyScripts !== appSettings.app_bodyScripts
     );
@@ -107,7 +107,9 @@ export default function CmsDesk() {
             name='logo'
             label='Logo'
             value={logo}
-            onChange={setLogo}
+            onChange={(value) =>
+              Array.isArray(value) ? setLogo(value[0]) : setLogo(value)
+            }
           />
         </div>
 

@@ -28,19 +28,39 @@ export default function ImageUploader({
           type='file'
           accept='image/*'
           hidden
+          multiple
           onChange={async (e) => {
+            const toastId = toast.loading('Uploading image...');
+
             if (!e.target.files || e.target.files.length === 0) {
-              toast.error('No image selected');
+              toast.update(toastId, {
+                type: 'error',
+                data: 'No image selected',
+              });
               return;
             }
 
-            const res = await uploadImages(e.target.files);
-            if (res.success !== 1) {
-              toast.error(res.toast.message);
-              return;
-            }
+            try {
+              const res = await uploadImages(e.target.files);
 
-            handleImageUploaded(res.images);
+              if (res.success !== 1) {
+                toast.update(toastId, {
+                  type: 'error',
+                  data: res.toast.message,
+                });
+                return;
+              }
+
+              toast.update(toastId, {
+                type: 'success',
+                data: res.toast.message,
+                autoClose: 3000,
+                isLoading: false,
+              });
+              handleImageUploaded(res.images);
+            } catch (err: any) {
+              toast.update(toastId, { type: 'error', data: err.message });
+            }
           }}
         />
       </label>

@@ -16,7 +16,6 @@ import { getAppSettings } from './services/app.server';
 import Hydrated from './components/Hydrated';
 import BackToTop from './widgets/BackToTop';
 import { getCategories } from './services/category.server';
-import { getImageUrl } from './utils';
 
 export const links: LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

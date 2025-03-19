@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { IImage } from '~/interfaces/image.interface';
-import { getImageUrl, toVnDateString } from '~/utils';
+import { toVnDateString } from '~/utils';
 
 export default function ImageMetadata({ image }: { image: IImage }) {
   const [dimension, setDimension] = useState('0x0');
@@ -12,7 +12,7 @@ export default function ImageMetadata({ image }: { image: IImage }) {
   useEffect(() => {
     (async () => {
       const img = new Image();
-      const res = await fetch(getImageUrl(image.img_name));
+      const res = await fetch(image.img_url);
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
       img.onload = () => {

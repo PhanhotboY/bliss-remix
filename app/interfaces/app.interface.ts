@@ -1,7 +1,9 @@
+import { IImage } from './image.interface';
+
 export interface IAppSettings {
   app_title: string;
   app_description: string;
-  app_logo: string;
+  app_logo: IImage;
   app_social: {
     facebook: string;
     youtube: string;

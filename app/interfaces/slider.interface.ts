@@ -1,11 +1,7 @@
-export interface ISliderImage {
-  url: string;
-  alt: string;
-  link?: string;
-}
+import { IImage } from './image.interface';
 
 export interface ISlider {
   id: string;
   sld_type: string;
-  sld_images: Array<ISliderImage>;
+  sld_images: Array<IImage>;
 }

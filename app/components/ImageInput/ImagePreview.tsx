@@ -1,6 +1,3 @@
-import { RiCloseLine } from '@remixicon/react';
-import { getImageUrl } from '~/utils';
-
 export default function ImagePreview({
   src,
   handleOpenPicker,
@@ -10,11 +7,7 @@ export default function ImagePreview({
 }) {
   return (
     <div className='relative wrapper rounded-xl border border-blue-100 w-full flex justify-center p-2 shadow-sm shadow-blue-500 '>
-      <img
-        src={getImageUrl(src)}
-        alt=''
-        className='w-full h-40 object-contain'
-      />
+      <img src={src} alt='' className='w-full h-40 object-contain' />
 
       {handleOpenPicker && (
         <button

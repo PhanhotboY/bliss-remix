@@ -1,7 +1,6 @@
 import { ActionFunctionArgs } from '@remix-run/node';
 import { authenticator } from '~/services/auth.server';
 import { createImage } from '~/services/image.server';
-import { getImageUrl } from '~/utils';
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const user = await authenticator.isAuthenticated(request, {
@@ -29,7 +28,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       images,
       success: 1,
       file: {
-        url: getImageUrl(images[0].img_name),
+        url: (images[0].img_url as string) || '',
       },
       toast: { message: 'Upload ảnh thành công!', type: 'success' },
     });

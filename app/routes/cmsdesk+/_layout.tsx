@@ -235,8 +235,8 @@ const UserBrief = ({ user }: { user: IUser }) => {
         </div>
       </div>
 
-      <div>
-        <h4 className='font-semibold text-lg text-gray-700 capitalize font-poppins tracking-wide'>
+      <div className='overflow-hidden'>
+        <h4 className='font-semibold text-lg text-gray-700 capitalize font-poppins tracking-wide truncate'>
           {fullName}
         </h4>
         <span className='text-sm tracking-wide flex items-center space-x-1 text-green'>

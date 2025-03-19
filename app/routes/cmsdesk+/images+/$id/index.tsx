@@ -1,14 +1,14 @@
 import { toast } from 'react-toastify';
-import { LoaderFunctionArgs, MetaFunction, redirect } from '@remix-run/node';
+import { LoaderFunctionArgs, MetaFunction } from '@remix-run/node';
 import { useEffect, useRef, useState } from 'react';
 import {
+  redirect,
   useFetcher,
   useLoaderData,
   useNavigate,
-  useRevalidator,
 } from '@remix-run/react';
 
-import { getImageUrl, toVnDateString } from '~/utils';
+import { toVnDateString } from '~/utils';
 import { deleteImage, getImage, updateImage } from '~/services/image.server';
 import HandsomeError from '~/components/HandsomeError';
 import TextInput from '~/components/TextInput';
@@ -48,8 +48,9 @@ export const action = async ({ request, params }: LoaderFunctionArgs) => {
 
       case 'DELETE': {
         await deleteImage(id, user);
+        return redirect('/cmsdesk/images');
 
-        return { toast: { message: 'Xóa ảnh thành công', type: 'success' } };
+        // return { toast: { message: 'Xóa ảnh thành công', type: 'success' } };
       }
 
       default:
@@ -78,7 +79,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 
   return [
     {
-      title: `Ảnh ${image?.img_title || image?.img_name}`,
+      title: `Ảnh ${image?.img_title || image?.id}`,
       description: `Ảnh ${
         image?.img_title || image?.img_name
       } được tải lên vào ${toVnDateString(image?.updatedAt || '')}`,
@@ -127,6 +128,10 @@ export default function ImagePopup() {
         break;
 
       case 'loading':
+        if (fetcher.formMethod === 'DELETE') {
+          toast.dismiss(toastIdRef.current);
+        }
+
         if (fetcher.data?.toast && toastIdRef.current) {
           const { toast: toastData } = fetcher.data as any;
           toast.update(toastIdRef.current, {
@@ -138,9 +143,6 @@ export default function ImagePopup() {
           toastIdRef.current = null;
           setLoading(false);
 
-          if (fetcher.formMethod === 'DELETE') {
-            navigate('/cmsdesk/images');
-          }
           break;
         }
 
@@ -162,7 +164,7 @@ export default function ImagePopup() {
           text-[--sub11-text] overflow-hidden'
         >
           <img
-            src={getImageUrl(image.img_name)}
+            src={image.img_url}
             alt={image.img_title}
             className='object-contain'
           />
@@ -244,8 +246,8 @@ export default function ImagePopup() {
             </button>
 
             <a
-              href={getImageUrl(image.img_name)}
-              download={image.img_name}
+              href={image.id}
+              download={image.id}
               className='border-x border-zinc-200 px-4 hover:text-blue-500'
             >
               Tải về tệp tin

@@ -89,10 +89,6 @@ const getMapLink = (html: string) => {
   return html.match(/(https:\/\/[^"]*)/)?.[1];
 };
 
-const getImageUrl = (name: string) => {
-  return `http://localhost:3000/uploads/${name}`;
-};
-
 const toVnDateString = (date: string) => {
   return new Date(date).toLocaleDateString('vi-VN', {
     day: 'numeric',
@@ -106,6 +102,5 @@ export {
   toCurrencyString,
   toAddressString,
   getMapLink,
-  getImageUrl,
   toVnDateString,
 };
