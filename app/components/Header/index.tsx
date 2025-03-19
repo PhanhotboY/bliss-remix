@@ -19,28 +19,31 @@ export default function Header({ shadow }: { shadow?: boolean }) {
             <span>Thứ Hai - Chủ Nhật 8:00 - 21:00</span>
           </li>
 
-          <li className='hidden md:flex items-center gap-2'>
-            <div className='rounded-full border p-1'>
-              <RiPhoneLine size={16} />
-            </div>
+          {mainBranch && (
+            <li className='hidden md:flex items-center gap-2'>
+              <div className='rounded-full border p-1'>
+                <RiPhoneLine size={16} />
+              </div>
+              <span>
+                <a
+                  className='hover:underline'
+                  href={`tel:${mainBranch.bra_msisdn}`}
+                >
+                  {mainBranch.bra_msisdn}
+                </a>
+              </span>
+            </li>
+          )}
 
-            <span>
-              <a
-                className='hover:underline'
-                href={`tel:${mainBranch.bra_msisdn}`}
-              >
-                {mainBranch.bra_msisdn}
-              </a>
-            </span>
-          </li>
+          {mainBranch && (
+            <li className=' items-center gap-2 hidden lg:flex'>
+              <div className='rounded-full border p-1'>
+                <RiMapPinLine size={16} />
+              </div>
 
-          <li className=' items-center gap-2 hidden lg:flex'>
-            <div className='rounded-full border p-1'>
-              <RiMapPinLine size={16} />
-            </div>
-
-            <span>{toAddressString(mainBranch.bra_address)}</span>
-          </li>
+              <span>{toAddressString(mainBranch.bra_address)}</span>
+            </li>
+          )}
         </ul>
       </div>
 

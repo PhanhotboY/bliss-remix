@@ -40,17 +40,19 @@ export default function Footer() {
 
           <p>{app.app_description}</p>
 
-          <div className='w-full'>
-            <iframe
-              className='w-full'
-              src={getMapLink(mainBranch.bra_map)}
-              height='150'
-              style={{ border: 0 }}
-              allowFullScreen={true}
-              loading='lazy'
-              referrerPolicy='no-referrer-when-downgrade'
-            ></iframe>
-          </div>
+          {mainBranch && (
+            <div className='w-full'>
+              <iframe
+                className='w-full'
+                src={getMapLink(mainBranch.bra_map)}
+                height='150'
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading='lazy'
+                referrerPolicy='no-referrer-when-downgrade'
+              ></iframe>
+            </div>
+          )}
         </section>
 
         <section className='col-span-12 md:col-span-4 flex flex-col'>
@@ -61,31 +63,37 @@ export default function Footer() {
           </p>
           <p className='leading-8'>
             <RiMapPinFill className='inline' size={20} />{' '}
-            {toAddressString(mainBranch.bra_address)}
+            {mainBranch && toAddressString(mainBranch.bra_address)}
           </p>
 
           <br />
           <p>
             <b>Mã Số thuế:</b> {app.app_taxCode}
           </p>
-          <p>
-            <b>Hotline Tư vấn & CSKH:</b>{' '}
-            <a
-              className='hover:underline'
-              href={`tel:${mainBranch.bra_msisdn}`}
-            >
-              {mainBranch.bra_msisdn}
-            </a>
-          </p>
-          <p>
-            <b>Email:</b>{' '}
-            <a
-              className='hover:underline'
-              href={`mailto:${mainBranch.bra_email}`}
-            >
-              {mainBranch.bra_email}
-            </a>
-          </p>
+
+          {mainBranch && (
+            <p>
+              <b>Hotline Tư vấn & CSKH:</b>{' '}
+              <a
+                className='hover:underline'
+                href={`tel:${mainBranch.bra_msisdn}`}
+              >
+                {mainBranch.bra_msisdn}
+              </a>
+            </p>
+          )}
+
+          {mainBranch && (
+            <p>
+              <b>Email:</b>{' '}
+              <a
+                className='hover:underline'
+                href={`mailto:${mainBranch.bra_email}`}
+              >
+                {mainBranch.bra_email}
+              </a>
+            </p>
+          )}
         </section>
 
         <section className='col-span-12 md:col-span-4 flex flex-col'>

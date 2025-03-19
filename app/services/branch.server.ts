@@ -9,7 +9,7 @@ const getBranches = async () => {
 
 const getMainBranch = async () => {
   const branch = await fetcher(`/branches/main`);
-  return branch as IBranchDetail;
+  return branch as IBranchDetail | null;
 };
 
 const getBranchDetail = async (id: string) => {
