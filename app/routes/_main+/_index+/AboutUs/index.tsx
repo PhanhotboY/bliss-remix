@@ -43,8 +43,8 @@ export default function About() {
 
       <div className='col-span-12 md:col-span-6'>
         <img
-          className='h-full w-full object-contain object-top'
-          src='/assets/about-us.png'
+          className='h-full w-full object-cover object-center'
+          src='/assets/about-us.jpg'
           alt=''
         />
       </div>

@@ -5,8 +5,6 @@ import LandingPageEditor from './LandingPage';
 import BlogEditor from './Blog';
 import { IPageDetail } from '~/interfaces/page.interface';
 import Wrapper from './Wrapper';
-import AboutPageEditor from './AboutPage';
-import AdmissionPageEditor from './AdmissionPage';
 
 export default function PageEditor({ page }: { page?: IPageDetail }) {
   const [isChanged, setIsChanged] = useState(false);

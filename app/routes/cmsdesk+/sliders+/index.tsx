@@ -73,27 +73,24 @@ export default function CmsDesk() {
       />
 
       <SliderInput
-        label='Kết quả điều trị mụn'
-        type='result-acnes'
+        label='Kết quả vi chạm'
+        type='result-1'
         defaultImages={
-          sliders.find((slider) => slider.sld_type === 'result-acnes')
-            ?.sld_images
+          sliders.find((slider) => slider.sld_type === 'result-1')?.sld_images
         }
       />
       <SliderInput
-        label='Kết quả điều trị thâm'
-        type='result-scars'
+        label='Kết quả học viên'
+        type='result-2'
         defaultImages={
-          sliders.find((slider) => slider.sld_type === 'result-scars')
-            ?.sld_images
+          sliders.find((slider) => slider.sld_type === 'result-2')?.sld_images
         }
       />
       <SliderInput
-        label='Kết quả trẻ hóa da'
-        type='result-rejuvenation'
+        label='Kết quả phun xăm'
+        type='result-3'
         defaultImages={
-          sliders.find((slider) => slider.sld_type === 'result-rejuvenation')
-            ?.sld_images
+          sliders.find((slider) => slider.sld_type === 'result-3')?.sld_images
         }
       />
 
@@ -116,4 +113,6 @@ export default function CmsDesk() {
   );
 }
 
-export const ErrorBoundary = () => <HandsomeError basePath='/cmsdesk/images' />;
+export const ErrorBoundary = () => (
+  <HandsomeError basePath='/cmsdesk/sliders' />
+);

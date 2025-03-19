@@ -36,7 +36,7 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
         const page = await updatePage(
           id,
           { title, content, thumbnail, category, template, isPublished },
-          user,
+          user
         );
 
         // return redirect('/cmsdesk/pages');
@@ -80,11 +80,8 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
     throw new Error('Page not found');
   }
 
-  const user = await authenticator.isAuthenticated(request, {
-    failureRedirect: '/cmsdesk/login',
-  });
   // Fetch the page from the database
-  const page = await getPostDetail(id, user);
+  const page = await getPostDetail(id);
 
   return { page };
 };

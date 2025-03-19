@@ -9,7 +9,10 @@ export default function LandingPage() {
   return (
     <main className='mb-16'>
       <section className='w-full h-fit'>
-        <img src={page.pst_thumbnail} alt={`${page.pst_title} thumbnail`} />
+        <img
+          src={page.pst_thumbnail?.img_url}
+          alt={`${page.pst_title} thumbnail`}
+        />
       </section>
 
       <div className='container block'>

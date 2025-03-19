@@ -4,6 +4,7 @@ import Select from '@widgets/Select/index';
 import TextInput from '@components/TextInput';
 import { PAGE } from '~/constants/page.constant';
 import ImageInput from '~/components/ImageInput';
+import { IImage } from '~/interfaces/image.interface';
 
 export default function AboutPageEditor({
   titleState: [title, setTitle],
@@ -13,7 +14,7 @@ export default function AboutPageEditor({
 }: {
   templateState: [string, (template: string) => void];
   titleState: [string, (title: string) => void];
-  thumbnailState: [string, (thumbnail: string) => void];
+  thumbnailState: [IImage, (thumbnail: IImage) => void];
   contentState: [string, (content: string) => void];
 }) {
   return (
@@ -38,7 +39,9 @@ export default function AboutPageEditor({
           name='thumbnail'
           id='thumbnail'
           value={thumbnail}
-          onChange={(value) => setThumbnail(value)}
+          onChange={(value) =>
+            Array.isArray(value) ? setThumbnail(value[0]) : setThumbnail(value)
+          }
         />
       </div>
 

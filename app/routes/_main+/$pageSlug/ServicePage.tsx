@@ -40,7 +40,7 @@ export default function ServicePage() {
                       <div className='w-full aspect-video h-fit overflow-hidden'>
                         <img
                           className='hover:scale-105 transform transition-all duration-500'
-                          src={svc.svc_page.pst_thumbnail}
+                          src={svc.svc_page.pst_thumbnail?.img_url}
                           alt={svc.svc_page.pst_title}
                         />
                       </div>

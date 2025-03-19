@@ -23,7 +23,7 @@ export const PAGE = {
       code: 'contact',
     },
     SERVICE_PAGE: {
-      name: 'Service',
+      name: 'Dịch vụ',
       code: 'service',
     },
     BLOG: {

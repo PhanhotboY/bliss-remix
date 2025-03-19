@@ -12,7 +12,10 @@ export default function ContactPage() {
   return (
     <main className=''>
       <section className='w-full h-fit'>
-        <img src={page.pst_thumbnail} alt={`${page.pst_title} thumbnail`} />
+        <img
+          src={page.pst_thumbnail?.img_url}
+          alt={`${page.pst_title} thumbnail`}
+        />
       </section>
 
       <div className='container my-16 gap-8'>

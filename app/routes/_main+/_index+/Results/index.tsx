@@ -129,15 +129,15 @@ const settings = {
 
 const RESULT_TYPE = {
   ACNES: {
-    LABEL: 'ĐIỀU TRỊ MỤN',
-    VALUE: 'result-acnes',
+    LABEL: 'VI CHẠM THỦ CÔNG',
+    VALUE: 'result-1',
   },
   SCARS: {
-    LABEL: 'ĐIỀU TRỊ SẸO',
-    VALUE: 'result-scars',
+    LABEL: 'HỌC VIÊN',
+    VALUE: 'result-2',
   },
   REJUVENATION: {
-    LABEL: 'TRẺ HOÁ DA',
-    VALUE: 'result-rejuvenation',
+    LABEL: 'PHUN XĂM',
+    VALUE: 'result-3',
   },
 };
