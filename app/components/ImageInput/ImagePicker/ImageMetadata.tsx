@@ -22,6 +22,7 @@ export default function ImageMetadata({ image }: { image: IImage }) {
         setLoading(false);
       };
       img.src = url;
+      setLoading(false);
     })();
   });
 

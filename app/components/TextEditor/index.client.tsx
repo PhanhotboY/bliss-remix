@@ -71,6 +71,7 @@ const tools = {
     config: {
       endpoints: {
         byFile: '/api/images/upload', // Your backend file uploader endpoint
+        byUrl: '/api/images/fetchUrl', // Your endpoint that provides uploading by Url
       },
       field: 'img',
     },
