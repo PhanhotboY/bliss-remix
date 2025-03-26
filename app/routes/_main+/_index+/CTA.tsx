@@ -2,7 +2,11 @@ import BookingForm from '~/components/BookingForm';
 import { useRootLoaderData } from '~/lib/useRootLoaderData';
 
 export default function CTA() {
-  const { mainBranch } = useRootLoaderData();
+  const { branches } = useRootLoaderData();
+  const mainBranch =
+    branches.find((branch) => branch.bra_isMain) || branches
+      ? branches[0]
+      : null;
 
   return (
     <section className=''>
@@ -21,9 +25,9 @@ export default function CTA() {
               Hotline Tư vấn & CSKH:{' '}
               <a
                 className='hover:underline'
-                href={`tel:${mainBranch.bra_msisdn}`}
+                href={`tel:${mainBranch?.bra_msisdn}`}
               >
-                {mainBranch.bra_msisdn}
+                {mainBranch?.bra_msisdn}
               </a>
             </h3>
 

@@ -12,10 +12,14 @@ import Results from '~/routes/_main+/_index+/Results';
 import Customers from './Customers';
 import Testimony from './Testimony';
 import CTA from './CTA';
+import { getBranches } from '~/services/branch.server';
 
 export const loader = async () => {
-  const sliders = await getSliders();
-  const posts = await getPosts();
+  const [sliders, posts] = await Promise.all([
+    getSliders(),
+    getPosts(),
+    getBranches(),
+  ]);
 
   return { sliders, posts };
 };

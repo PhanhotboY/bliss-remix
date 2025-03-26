@@ -7,7 +7,9 @@ import Hydrated from '../Hydrated';
 import { useEffect } from 'react';
 
 export default function Footer() {
-  const { appSettings: app, mainBranch } = useRootLoaderData();
+  const { appSettings: app, branches } = useRootLoaderData();
+  const mainBranch =
+    branches.find((branch) => branch.bra_isMain) || branches[0];
 
   useEffect(() => {
     const script = document.createElement('script');

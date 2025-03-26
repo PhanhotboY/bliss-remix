@@ -19,7 +19,9 @@ export default function BlogHeader({}: // theme,
   // theme: string;
   // setTheme: (theme: 'light' | 'dark') => void;
 }) {
-  const { appSettings, mainBranch } = useRootLoaderData();
+  const { appSettings, branches } = useRootLoaderData();
+  const mainBranch =
+    branches.find((branch) => branch.bra_isMain) || branches[0];
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);

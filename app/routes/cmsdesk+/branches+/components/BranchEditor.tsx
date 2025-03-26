@@ -44,7 +44,9 @@ export default function BranchEditor({
 
   useEffect(() => {
     setDistricts(getDistrictsByProvinceCode(province.code));
-    setDistrict(districts[0]);
+    setDistrict(
+      getDistrictBySlug(districts, branch?.bra_address.district) || districts[0]
+    );
   }, [province.code]);
 
   useEffect(() => {

@@ -4,7 +4,8 @@ import BookingForm from '../BookingForm';
 import { useRootLoaderData } from '~/lib/useRootLoaderData';
 
 export default function BookingPopup({ hidePopup }: { hidePopup: () => void }) {
-  const { mainBranch } = useRootLoaderData();
+  const { branches } = useRootLoaderData();
+  const mainBranch = branches.find((branch) => branch.bra_isMain);
 
   useEffect(() => {
     document.body.style.height = '100vh';
@@ -35,7 +36,7 @@ export default function BookingPopup({ hidePopup }: { hidePopup: () => void }) {
 
             <p className='capitalize text-2xl font-bold'>Liên Hệ Hotline</p>
 
-            <p className='text-3xl font-semibold'>{mainBranch.bra_msisdn}</p>
+            <p className='text-3xl font-semibold'>{mainBranch?.bra_msisdn}</p>
 
             <p>Giải quyết câu hỏi của khách hàng</p>
 

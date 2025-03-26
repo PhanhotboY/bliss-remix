@@ -50,16 +50,16 @@ export const meta: MetaFunction = () => {
 export const loader = async () => {
   // const appSettings = await getAppSettings();
   // const categories = await getCategories();
-  const [appSettings, categories, mainBranch] = await Promise.all([
+  const [appSettings, categories, branches] = await Promise.all([
     getAppSettings(),
     getCategories(),
-    getMainBranch(),
+    getBranches(),
   ]);
 
   return {
     appSettings,
     categories,
-    mainBranch,
+    branches,
   };
 };
 

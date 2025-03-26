@@ -5,7 +5,9 @@ import { toAddressString } from '~/utils';
 import StickyHeader from './StickyHeader';
 
 export default function Header({ shadow }: { shadow?: boolean }) {
-  const { mainBranch } = useRootLoaderData();
+  const { branches } = useRootLoaderData();
+  const mainBranch =
+    branches.find((branch) => branch.bra_isMain) || branches[0];
 
   return (
     <>
