@@ -33,15 +33,11 @@ export default function BookingList({
             </th>
 
             <th className='p-3 font-bold uppercase bg-zinc-200 border hidden lg:table-cell'>
-              Thời gian liên hệ
-            </th>
-
-            <th className='p-3 font-bold uppercase bg-zinc-200 border hidden lg:table-cell'>
-              Email
-            </th>
-
-            <th className='p-3 font-bold uppercase bg-zinc-200 border hidden lg:table-cell'>
               Số điện thoại
+            </th>
+
+            <th className='p-3 font-bold uppercase bg-zinc-200 border hidden lg:table-cell'>
+              Chi nhánh
             </th>
 
             <th className='p-3 font-bold uppercase bg-zinc-200 border hidden lg:table-cell'>
@@ -70,31 +66,16 @@ export default function BookingList({
 
               <td className='w-full lg:w-auto p-3 text-center border border-b block lg:table-cell relative lg:static'>
                 <span className='lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase'>
-                  Thời gian liên hệ
-                </span>
-                {bok.bok_time2Call +
-                  ', ' +
-                  (() => {
-                    try {
-                      return format(new Date(bok.bok_date2Call), 'dd/MM/yyyy');
-                    } catch (error) {
-                      return bok.bok_date2Call;
-                    }
-                  })()}
-              </td>
-
-              <td className='w-full lg:w-auto p-3 text-center border border-b block lg:table-cell relative lg:static'>
-                <span className='lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase'>
-                  Email
-                </span>
-                {bok.bok_email}
-              </td>
-
-              <td className='w-full lg:w-auto p-3 text-center border border-b block lg:table-cell relative lg:static'>
-                <span className='lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase'>
                   Số điện thoại
                 </span>
                 {bok.bok_msisdn}
+              </td>
+
+              <td className='w-full lg:w-auto p-3 text-center border border-b block lg:table-cell relative lg:static'>
+                <span className='lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase'>
+                  Chi nhánh
+                </span>
+                {bok.bok_branch.bra_name}
               </td>
 
               <td className='w-full lg:w-auto p-3 text-center border border-b block lg:table-cell relative lg:static'>

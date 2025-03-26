@@ -7,12 +7,7 @@ import {
 import { authenticator } from '~/services/auth.server';
 import { getBookingDetail, setViewedBooking } from '~/services/booking.server';
 import BookingDetail from '~/widgets/BookingDetail';
-import {
-  useLoaderData,
-  useNavigate,
-  useOutletContext,
-  useRevalidator,
-} from '@remix-run/react';
+import { useLoaderData, useNavigate, useRevalidator } from '@remix-run/react';
 
 export const action = async ({ request, params }: ActionFunctionArgs) => {
   const user = await authenticator.isAuthenticated(request);
@@ -35,7 +30,7 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   const user = await authenticator.isAuthenticated(request);
   if (!user) {
-    return json({ booking: null }, { status: 401 });
+    return {};
   }
 
   try {
@@ -43,15 +38,15 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
       throw new Response(null, { status: 400 });
     }
     const booking = await getBookingDetail(params.id, user);
-    return json({ booking });
+    return { booking };
   } catch (error) {
     console.error('Error loading booking detail:', error);
-    return json({ booking: null });
+    return {};
   }
 };
 
 export default function BookingDetailPopup() {
-  const { booking } = useLoaderData<typeof loader>() as any;
+  const { booking } = useLoaderData<typeof loader>();
   const navigate = useNavigate();
   const revalidator = useRevalidator();
 

@@ -5,9 +5,10 @@ export default function BookingDetail({
   booking,
   popupHidder,
 }: {
-  booking: IBooking;
+  booking?: IBooking;
   popupHidder: () => void;
 }) {
+  console.log(booking);
   return (
     <div
       className='fixed inset-0 z-50 bg-black/65 flex items-center'
@@ -19,38 +20,22 @@ export default function BookingDetail({
       >
         <p className=''>
           <b>Tên: </b>
-          {booking.bok_name}
+          {booking?.bok_name}
         </p>
 
         <p>
           <b>Số điện thoại: </b>
-          {booking.bok_msisdn}
+          {booking?.bok_msisdn}
         </p>
 
         <p>
-          <b>Email: </b>
-          {booking.bok_email}
-        </p>
-
-        <p>
-          <b>Thời gian liên hệ: </b>
-          {booking.bok_time2Call}
-        </p>
-
-        <p>
-          <b>Ngày liên hệ: </b>
-          {(() => {
-            try {
-              return format(new Date(booking.bok_date2Call), 'dd/MM/yyyy');
-            } catch (error) {
-              return booking.bok_date2Call;
-            }
-          })()}
+          <b>Chi nhánh: </b>
+          {booking?.bok_branch.bra_name}
         </p>
 
         <div>
           <b>Trạng thái: </b>
-          {booking.bok_viewed ? (
+          {booking?.bok_viewed ? (
             <p className='inline w-fit lg:hidden absolute top-0 left-0 bg-green px-2 py-1 text-xs font-bold uppercase text-[--sub6-text]'>
               Đã xem
             </p>
@@ -65,21 +50,24 @@ export default function BookingDetail({
           <b>Thời gian cập nhật: </b>
           {(() => {
             try {
-              return format(new Date(booking.updatedAt), 'hh:mm, dd/MM/yyyy');
+              return format(
+                new Date(booking?.updatedAt || 0),
+                'hh:mm, dd/MM/yyyy'
+              );
             } catch (error) {
-              return booking.updatedAt;
+              return booking?.updatedAt;
             }
           })()}
         </p>
 
-        {booking.bok_viewed ? (
+        {booking?.bok_viewed ? (
           <button
             className='center rounded-lg bg-red py-2 px-3 font-sans font-bold uppercase text-white 
           shadow-md shadow-red/20 transition-all hover:shadow-lg enable:active:bg-red/80 
           disabled:opacity-60'
             type='button'
             onClick={() => {
-              fetch(`/cmsdesk/bookings/${booking.id}`, {
+              fetch(`/cmsdesk/booking?s/${booking?.id}`, {
                 method: 'PUT',
                 body: JSON.stringify({ viewed: false }),
               });
@@ -95,7 +83,7 @@ export default function BookingDetail({
         disabled:opacity-60'
             type='button'
             onClick={() => {
-              fetch(`/cmsdesk/bookings/${booking.id}`, {
+              fetch(`/cmsdesk/bookings/${booking?.id}`, {
                 method: 'PUT',
                 body: JSON.stringify({ viewed: true }),
               });

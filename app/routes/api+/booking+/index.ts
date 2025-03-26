@@ -7,18 +7,12 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       const body = new URLSearchParams(await request.text());
       const name = body.get('name');
       const msisdn = body.get('msisdn');
-      const email = body.get('email');
-      const time2Call = body.get('time2Call');
-      const date2Call = body.get('date2Call');
-      const message = body.get('message');
+      const branch = body.get('branch');
 
       const res = await createBooking({
         name,
         msisdn,
-        email,
-        time2Call,
-        date2Call,
-        message,
+        branch,
         viewed: false,
       });
 

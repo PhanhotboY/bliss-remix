@@ -40,10 +40,6 @@ export default function BookingPopup({ hidePopup }: { hidePopup: () => void }) {
 
             <p>Giải quyết câu hỏi của khách hàng</p>
 
-            <div className='w-60 mx-auto'>
-              <img src='/assets/calendar.png' alt='calendar icon' />
-            </div>
-
             <p className='capitalize font-bold text-2xl'>Đặt Lịch Hẹn</p>
 
             <p className='uppercae font-semibold text-3xl'>NHẬN NGAY ƯU ĐÃI</p>
