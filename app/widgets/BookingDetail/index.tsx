@@ -8,7 +8,6 @@ export default function BookingDetail({
   booking?: IBooking;
   popupHidder: () => void;
 }) {
-  console.log(booking);
   return (
     <div
       className='fixed inset-0 z-50 bg-black/65 flex items-center'

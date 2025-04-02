@@ -31,4 +31,4 @@ export const PAGE = {
       code: 'blog',
     },
   },
-};
+} as const;

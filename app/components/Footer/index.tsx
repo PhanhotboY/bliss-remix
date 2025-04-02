@@ -96,6 +96,17 @@ export default function Footer() {
               </a>
             </p>
           )}
+
+          <br />
+          <p>
+            <a className='hover:underline' href='/dieu-khoan-su-dung'>
+              Điều khoản sử dụng
+            </a>{' '}
+            -{' '}
+            <a className='hover:underline' href='/chinh-sach-bao-mat'>
+              Chính sách bảo mật
+            </a>
+          </p>
         </section>
 
         <section className='col-span-12 md:col-span-4 flex flex-col'>

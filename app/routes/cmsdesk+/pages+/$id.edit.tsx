@@ -80,8 +80,9 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
     throw new Error('Page not found');
   }
 
+  const user = await authenticator.isAuthenticated(request);
   // Fetch the page from the database
-  const page = await getPostDetail(id);
+  const page = await getPostDetail(id, user!);
 
   return { page };
 };

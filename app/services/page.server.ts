@@ -31,8 +31,8 @@ const getUnpublishedPages = async ({
   return pages as IPage[];
 };
 
-const getPostDetail = async (id: string) => {
-  const page = await fetcher(`/pages/${id}`);
+const getPostDetail = async (id: string, request?: ISessionUser) => {
+  const page = await fetcher(`/pages/${id}`, { request });
   return page as IPageDetail;
 };
 
@@ -82,5 +82,6 @@ export {
   createPage,
   updatePage,
   deletePage,
+  getUnpublishedPages,
   increaseViewCount,
 };

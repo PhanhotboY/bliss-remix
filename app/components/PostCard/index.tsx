@@ -12,7 +12,7 @@ export default function PostCard({
   const colClasses = `col-span-3 sm:col-span-${cols?.sm || 6} md:col-span-${
     cols?.md || 4
   } lg:col-span-${cols?.lg || 3} xl:col-span-${cols?.xl || 3}`;
-  console.log(post);
+
   return (
     <div
       className={`${colClasses} group flex flex-col items-center text-dark shadow-lg p-2 border rounded-xl transition-all ease duration-300 hover:shadow-2xl`}
